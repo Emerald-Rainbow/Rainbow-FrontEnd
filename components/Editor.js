@@ -189,7 +189,8 @@ export default function Editor(props) {
     
       
       if(optIconRef.current != null && ellipsRef.current != null){
-        if(window.innerWidth <= 900) {
+        const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
+        if(window.innerWidth <= 900 || isMobileDevice) {
             optIconRef.current.style.display = 'none';
             ellipsRef.current.style.display = 'flex';
           }
