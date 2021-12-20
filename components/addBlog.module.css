@@ -1,0 +1,13 @@
+.backDrop {
+    /* width: "70%"; */
+    /* height: "80vh"; */
+    @media(min-width: 900px) {
+        width: "70%";
+        height: "80vh";
+    }
+}
+.editorWrapper{
+    @media(max-width: 900px) {
+
+    }
+}

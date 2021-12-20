@@ -1,16 +1,17 @@
 import Editor from "../components/Editor";
+import Styles from '../components/addBlog.module.css'
 
 export default function addBlog() {
   return (
     <>
       <div
-        className="backDrop"
+        className={Styles.backDrop}
         style={{
           overflow: "auto",
           backgroundColor: "#EDEDED",
           borderRadius: "28px",
-          width: "70%",
-          height: "80vh",
+          width: "90%",
+          height: "60vh",
           margin: "auto",
           display: "flex",
           // flexDirection: "column",
@@ -24,12 +25,14 @@ export default function addBlog() {
             background-color: #1f77a9;
           }
         `}</style>
-        <div style={{
-          width:'80%',
-          height:'80%',
-          margin:'auto',
-        }}>
-          <Editor placeholder="Add blog content!" />
+        <div 
+          className={Styles.editorWrapper}
+          style={{
+            width:'80%',
+            height:'80%',
+            margin:'auto',
+          }}>
+            <Editor placeholder="Add blog content!" />
         </div>
       </div>
       <svg

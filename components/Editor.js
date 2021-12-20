@@ -48,7 +48,7 @@ const CustomToolbar = (props) => (
         <div 
             ref={props.optIconRef}
             className="optionalIcons"
-            style={{display:'inline-block'}}
+            style={{display:'none'}}
         >
             <span className={`ql-formats ${styles.toolbarGroup}`}>
                 <button className="ql-blockquote"></button>
@@ -67,7 +67,7 @@ const CustomToolbar = (props) => (
     <span className={styles.toolbarGroup}
       ref={props.ellipsRef}
       style={{ 
-        display: "none",
+        display: "flex",
         alignItems: "center",
         width: "fit-content",
         position:'relative'
@@ -145,11 +145,11 @@ const CustomToolbar = (props) => (
     </span>
 
 
-    <span className={`${styles.toolbarGroup}`} style={{ marginLeft: "auto", alignSelf: "center" }}>
-      <span style={{ paddingRight: "3px" }}>Post</span>
+    {/* <span className={`${styles.toolbarGroup}`} style={{ marginLeft: "auto", alignSelf: "center" }}>
+      <span style={{ paddingRight: "3px" }}>Post</span> */}
 
       {/* send button */}
-      <svg
+      {/* <svg
         width="14"
         height="14"
         viewBox="0 0 14 14"
@@ -162,7 +162,7 @@ const CustomToolbar = (props) => (
           fill="black"
         />
       </svg>
-    </span>
+    </span> */}
   </div>
 );
 
@@ -188,9 +188,12 @@ export default function Editor(props) {
     function handleToolbarResize(){
     
       
-      if(optIconRef.current != null && ellipsRef.current != null){
-        const isMobileDevice = /Mobi/i.test(window.navigator.userAgent);
-        if(window.innerWidth <= 900 || isMobileDevice) {
+      if(optIconRef.current == null || ellipsRef.current == null){
+        setTimeout(handleToolbarResize, 200);
+        return;
+      }
+
+        if(window.innerWidth <= 900 ) {
             optIconRef.current.style.display = 'none';
             ellipsRef.current.style.display = 'flex';
           }
@@ -198,7 +201,6 @@ export default function Editor(props) {
             optIconRef.current.style.display = 'inline-block';
             ellipsRef.current.style.display = 'none';
           }
-      }
     }
   if (typeof window !== "undefined") {
     const ReactQuill = require("react-quill");
@@ -215,6 +217,23 @@ export default function Editor(props) {
       handleResize = setTimeout(handleToolbarResize, 100);
     });
     
+    var mq = window.matchMedia( "(max-width: 900px)" );
+    if (mq.matches) {
+        // window width is at less than 900px
+        if(optIconRef.current != null && ellipsRef.current != null){
+              optIconRef.current.style.display = 'none';
+              ellipsRef.current.style.display = 'flex';
+            }
+  
+    }
+    else {
+        // window width is greater than 900px
+        if(optIconRef.current != null && ellipsRef.current != null){
+          optIconRef.current.style.display = 'inline-block';
+          ellipsRef.current.style.display = 'none';
+        }
+    }
+
     return (
       <div
         style={{
