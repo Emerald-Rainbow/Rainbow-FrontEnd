@@ -1,0 +1,81 @@
+#ellipsisCheckbox {
+    display: none;
+  }
+  .icon {
+    /* position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    margin: 0 auto; */
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    /* transform: translateY(-50%); */
+    transition: 0.3s ease transform;
+    cursor: pointer;
+  }
+  
+  .icon {
+    position: relative;
+    background-color: #2f2e2e;
+    width: 4px;
+    height: 4px;
+    border-radius: 7px;
+  }
+  .icon::after,
+  .icon::before {
+    content: "";
+    background-color: #2f2e2e;
+    width: 4px;
+    height: 4px;
+    border-radius: 7px;
+    position: absolute;
+    transform: rotate(0deg);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .icon::before {
+    left: -7px;
+  }
+  .icon::after {
+    left: 7px;
+  }
+  
+  .ellipsisCheckbox:checked + .icon {
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0);
+  }
+  
+  .ellipsisCheckbox:checked + .icon::before,
+  .ellipsisCheckbox:checked + .icon::after {
+    width: 20px;
+    height: 3px;
+    left: -7px;
+  }
+  @keyframes rotateLeft {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(45deg);
+    }
+  }
+  
+  @keyframes rotateRight {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(-45deg);
+    }
+  }
+  #ellipsisCheckbox:checked + .icon::before {
+    transform: rotate(45deg);
+  }
+  #ellipsisCheckbox:checked + .icon::after {
+    transform: rotate(-45deg);
+  }
+
+  .toolbarGroup {
+      min-width: fit-content;
+  }
+  
