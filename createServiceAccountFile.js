@@ -11,7 +11,7 @@ const vars = `
     "auth_uri":"${process.env.auth_uri}",\n
     "token_uri":"${process.env.token_uri}",\n
     "auth_provider_x509_cert_url":"${process.env.auth_provider_x509_cert_url}",\n
-    "client_x509_cert_url":"${process.env.client_x509_cert_url}",\n
+    "client_x509_cert_url":"${process.env.client_x509_cert_url}"\n
 }
     `
     
