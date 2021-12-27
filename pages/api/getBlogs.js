@@ -3,6 +3,11 @@ import Blog from '../../utils/models/blogModel';
 
 export default async (req, res) => {
     try {
+        // Test
+        res.send(db);
+
+
+        // Actual code
         const blogs = await db.collection('blogs');
         const data = await blogs.get();
         const blogsArray = [];
