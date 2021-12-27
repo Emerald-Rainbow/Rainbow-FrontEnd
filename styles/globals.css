@@ -4,8 +4,10 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    width : 100%;
+    height : 100vh;
 }
-
+/*
 * {
   box-sizing: border-box;
 }
@@ -32,4 +34,35 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+*/
+.login-form{
+  width: 350px;
+  top: 0;
+  Left: 0;
+  right:0;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  color: #fff;
+  
+
+}
+.login-form p  {
+  font-size: 16px;
+  width: 50%;
+  padding: 30px 20px;
+  border:0;
+  outline: none;
+  border-radius: 5px;
+
+}
+.login-form button{
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0;
+  padding: 10px 15px;
+  width: 50%;
+  border-radius: 5px;
+  border:0;
 }
