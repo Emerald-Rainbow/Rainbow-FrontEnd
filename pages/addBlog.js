@@ -1,15 +1,40 @@
 import {useRef, useState} from "react";
+import axios from 'axios';
+
 import Editor from "../components/Editor";
 import Styles from '../components/addBlog.module.css';
 
 export default function addBlog() {
   const [editorHTML, setEditorHTML] =  useState("");
-  function handlePost(){
-    console.log(editorHTML);
-    let editorHTMLString = JSON.stringify(editorHTML);
-    console.log(editorHTMLString);
-    console.log(JSON.parse(editorHTMLString));
-    // post to api the editor HTML CONTENT HERE.
+  const [blogTitle, setBlogTitle] =  useState("");
+
+  async function handlePost(){
+    // Disable Post button on front end
+    // Show loading Icon
+
+    const d = new Date();
+    // *****************************************************
+    // Change User Id When Auth is setup
+    let userId = 123456;
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    let createdAt = `${d.getHours()}:${d.getMinutes()}  ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+    let data = {
+      userId    : userId,
+      title     : blogTitle,
+      content   : editorHTML,
+      createdAt : createdAt
+    };
+    console.log(JSON.stringify(data));
+    const res = await axios.post('/api/blog', JSON.stringify(data), {
+        headers: {
+        // Overwrite Axios's automatically set Content-Type
+        'Content-Type': 'application/json'
+      }
+    });
+    console.log(res);
+
+    // Shpw alert Success or something
+    // Redirect to Blog Page or something
   }
   return (
     <>
@@ -51,11 +76,13 @@ export default function addBlog() {
             }}
           >
             <input
-            className={Styles.titleInput}
+              className={Styles.titleInput}
+              value={blogTitle}
+              onChange={(e)=>{setBlogTitle(e.target.value);}}
               placeholder="Enter a Title.."
             ></input>
             <button
-            className={Styles.postButton}
+              className={Styles.postButton}
               onClick={handlePost}
             >
               <span style={{ 
