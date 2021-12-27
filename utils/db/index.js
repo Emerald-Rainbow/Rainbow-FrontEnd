@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 var serviceAccount;
+var db;
 try{
     // For Dev Build on local Machine
     serviceAccount = require('./serviceAccountKey.json');
@@ -21,11 +22,11 @@ catch{
         client_x509_cert_url: `${process.env.client_x509_cert_url}`
       }
       console.log(serviceAccount);
-      admin = serviceAccount;
+      db = serviceAccount;
     }
     // Actual shouldn't have this try catch
     catch{
-      admin = process.env.type;
+      db = process.env.type;
     }
 }
 //initialize admin SDK using serviceAcountKey
@@ -38,6 +39,6 @@ if (!admin.apps.length) {
       console.log('Firebase admin initialization error', error.stack);
     }
 }
-export default admin;
+export default db;
 // Actual
 // export default admin.firestore();
