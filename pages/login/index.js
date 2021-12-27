@@ -1,18 +1,22 @@
 import Head from 'next/head'
-import Styles from '../../styles/login.module.css'
+
 
 export default function Login() {
   return (
-    <div class="login-form">
-            <h1>Login Form</h1>
-            <form action="#" method="post">
-                <p>User Name</p>
-                <input type="text" name="user" placeholder="User Name" />
-                                <p>Password</p>
-                <input type="password" name="password" placeholder="password" /> 
-                <button type="submit">LOGIN </button>
-            </form>
+    <div class="loginBody">
+    <div class="loginmain">
+    <p class="loginsign" align="center">Sign in</p>
+    <form class="loginform">
+      <input class="loginun " type="text" align="center" placeholder="Username" />
+      <input class="loginpass" type="password" align="center" placeholder="Password" />
+      <a class="loginsubmit" align="center">Sign in</a>
+      <p align = "center" >OR</p>
+      <a class="submitgoogle" align="center">Sign in with Google</a>
+      <p class="loginforgot" align="center"><a href="#">Forgot Password?</a></p>
+       </form>     
+                
     </div>
+     </div>
 
   )
 }
