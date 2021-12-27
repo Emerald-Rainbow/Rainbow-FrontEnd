@@ -33,4 +33,4 @@ yarn-error.log*
 .netlify
 
 # Firebase Db Config
-serviceAccountKey.json
+# serviceAccountKey.json
