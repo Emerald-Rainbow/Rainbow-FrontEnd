@@ -1,9 +1,19 @@
+import {useRef, useState} from "react";
 import Editor from "../components/Editor";
-import Styles from '../components/addBlog.module.css'
+import Styles from '../components/addBlog.module.css';
 
 export default function addBlog() {
+  const [editorHTML, setEditorHTML] =  useState("");
+  function handlePost(){
+    console.log(editorHTML);
+    let editorHTMLString = JSON.stringify(editorHTML);
+    console.log(editorHTMLString);
+    console.log(JSON.parse(editorHTMLString));
+    // post to api the editor HTML CONTENT HERE.
+  }
   return (
     <>
+      
       <div
         className={Styles.backDrop}
         style={{
@@ -11,10 +21,10 @@ export default function addBlog() {
           backgroundColor: "#EDEDED",
           borderRadius: "28px",
           width: "90%",
-          height: "60vh",
+          height: "80vh",
           margin: "auto",
-          display: "flex",
-          // flexDirection: "column",
+          // display: "flex",
+          flexDirection: "column",
           transform: 'translateY(13%)',
           justifyContent: 'center',
           alignItems: 'center',
@@ -31,8 +41,46 @@ export default function addBlog() {
             width:'80%',
             height:'80%',
             margin:'auto',
-          }}>
-            <Editor placeholder="Add blog content!" />
+            marginTop:'20px',
+          }}
+        >
+          <div
+            style={{
+              display:'flex',
+              height: '40px',
+            }}
+          >
+            <input
+            className={Styles.titleInput}
+              placeholder="Enter a Title.."
+            ></input>
+            <button
+            className={Styles.postButton}
+              onClick={handlePost}
+            >
+              <span style={{ 
+                paddingRight: "3px",
+                fontSize:'16px',
+                verticalAlign: 'middle',
+                }}>Post</span>
+  
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 14 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ verticalAlign: "middle" }}
+              >
+                <path
+                  className={Styles.postIcon}
+                  d="M1.89499 1.38601L12.43 6.42501C12.5363 6.47592 12.6261 6.55586 12.689 6.65561C12.7518 6.75537 12.7852 6.87086 12.7852 6.98876C12.7852 7.10667 12.7518 7.22216 12.689 7.32192C12.6261 7.42167 12.5363 7.50161 12.43 7.55251L1.89499 12.5915C1.78695 12.6433 1.6663 12.6629 1.54741 12.6481C1.42852 12.6333 1.3164 12.5845 1.22441 12.5078C1.13242 12.431 1.06443 12.3294 1.02854 12.2151C0.992655 12.1008 0.990382 11.9786 1.02199 11.863L2.07599 7.99901C2.0889 7.95166 2.11545 7.90915 2.15235 7.87678C2.18925 7.84442 2.23486 7.82363 2.28349 7.81701L7.38849 7.12351C7.40978 7.12053 7.42993 7.1121 7.44701 7.09905C7.46409 7.086 7.47752 7.06877 7.48599 7.04901L7.49499 7.01751C7.49894 6.9896 7.49333 6.96117 7.47908 6.93684C7.46483 6.91252 7.44277 6.89373 7.41649 6.88351L7.38899 6.87601L2.28899 6.18301C2.24045 6.17631 2.19495 6.15548 2.15815 6.12312C2.12134 6.09076 2.09486 6.0483 2.08199 6.00101L1.02199 2.11451C0.990382 1.99895 0.992655 1.87673 1.02854 1.76241C1.06443 1.6481 1.13242 1.54651 1.22441 1.46975C1.3164 1.39298 1.42852 1.34428 1.54741 1.32943C1.6663 1.31459 1.78695 1.33423 1.89499 1.38601Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+          </div>
+          <Editor placeholder="Add blog content!" editorHTML={editorHTML} setEditorHTML={setEditorHTML} />
         </div>
       </div>
       <svg

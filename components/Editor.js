@@ -177,9 +177,10 @@ export default function Editor(props) {
     const toolRef = useRef(null);
     const optIconRef = useRef(null);
     const ellipsRef = useRef(null);
+
+
     const [checked, setChecked] = useState(false);
     const handleCheck = () => {
-      console.log(checked);
       setChecked(!checked);
     }
     
@@ -234,6 +235,12 @@ export default function Editor(props) {
         }
     }
 
+
+    function handleEditorChange(content, delta, source, editor){
+      props.setEditorHTML(editor.getHTML());
+    }
+
+
     return (
       <div
         style={{
@@ -251,6 +258,7 @@ export default function Editor(props) {
         <ReactQuill
           placeholder={props.placeholder}
           modules={modules}
+          onChange = {handleEditorChange}
           style={{
             // flex: "1",
             width: "100%",
@@ -260,7 +268,7 @@ export default function Editor(props) {
             overflowY: "auto",
             flexBasis: "70%",
             flexGrow: "3",
-            marginTop: "30px"
+            marginTop: "20px"
           }}
         ></ReactQuill>
       </div>
