@@ -1,21 +1,26 @@
-import {useRef, useState} from "react";
+import {useRef, useState, useEffect} from "react";
 import axios from 'axios';
 
 
 
 export default function feed(){
-    const [posts, setPosts] =  useState([]);
+    const [posts,setPosts]= useState([]);
     async function getPosts(){
         try{
-         const res = await axios.get('/api/getBlogs');
+        // const res = await axios.get('/api/getBlogs');
+        const res = await axios.get('api/getBlogs');
          console.log(res.data);
           setPosts(res.data);
            }catch(err){
                console.log(err);
                }
        }
+
+    useEffect(()=>{
  getPosts();
  console.log(posts);
+    },[]);
+
 return(
     <div>
     {posts.map(post => (
