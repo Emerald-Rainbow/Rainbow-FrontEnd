@@ -8,20 +8,19 @@ import {
 } from "firebase/auth";
 import {auth} from './firebase'
 
-export default function Login() {
 
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+export default function signup() {
 
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
 
-  const login = async () => {
+  const register = async () => {
     try {
-      const user = await signInWithEmailAndPassword(
+      const user = await createUserWithEmailAndPassword(
         auth,
-        loginEmail,
-        loginPassword
+        registerEmail,
+        registerPassword
       );
-
       console.log(user);
     } catch (error) {
       console.log(error.message);
@@ -34,12 +33,12 @@ export default function Login() {
     <p class="loginsign" align="center">Sign in</p>
     <form class="loginform">
       <input class="loginun " type="text" align="center" placeholder="Username" onChange={(event) => {
-            setLoginEmail(event.target.value);
-          }}/>
-      <input class="loginpass" type="password" align="center" placeholder="Password"  onChange={(event) => {
-            setLoginPassword(event.target.value);
+            setRegisterEmail(event.target.value);
           }} />
-      <a class="loginsubmit" align="center" onClick={login}>Sign in</a>
+      <input class="loginpass" type="password" align="center" placeholder="Password" onChange={(event) => {
+            setRegisterPassword(event.target.value);
+          }} />
+      <a class="loginsubmit" align="center" onClick={register}>Sign up</a>
       <p align = "center" >OR</p>
       <a class="submitgoogle" align="center">Sign in with Google</a>
       <p class="loginforgot" align="center"><a href="#">Forgot Password?</a></p>
