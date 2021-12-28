@@ -7,7 +7,7 @@ export default function feed(){
     const [posts,setPosts]= useState([]);
     async function getPosts(){
         try{
-        // const res = await axios.get('/api/getBlogs');
+        
         const res = await axios.get('api/getBlogs');
          console.log(res.data);
           setPosts(res.data);
