@@ -5,8 +5,10 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  getAuth
 } from "firebase/auth";
-import {auth} from './firebase'
+// import {auth} from './firebase'
+auth = getAuth();
 
 export default function Login() {
 
