@@ -7,8 +7,9 @@ import {
   signOut,
   getAuth
 } from "firebase/auth";
-// import {auth} from './firebase'
-auth = getAuth();
+import firebaseApp from '../../utils/db/firebase';
+
+auth = getAuth(firebaseApp);
 
 export default function Login() {
 
