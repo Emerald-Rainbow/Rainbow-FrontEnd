@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
- 
+  width: 100vw !important;
 }
 /*
 * {
@@ -152,11 +152,23 @@ cursor: pointer;
   color: #E1BEE7;
   text-decoration: none
 }
-@media (max-width: 900px) {
-  .carousel {
-    width:100vw;
-    height: 50vh;
-  }}
+.carousel-indicators .active {
+  background-color: rgb(250,250,250) !important;
+}
+.carousel-indicators button{
+  width:50px !important;
+  background-color: rgba(250, 250, 250, 0.7) !important;
+}
+.feed-page-container {
+  display: table !important;
+  width:100vw !important;
+  justify-content: center !important;
+  
+  
+}
+.feed-page-container {
+  width:100% !important;
+}
 @media (max-width: 600px) {
   .loginmain {
       border-radius: 0px;

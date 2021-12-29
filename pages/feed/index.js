@@ -1,8 +1,8 @@
 import {useRef, useState, useEffect} from "react";
 import axios from 'axios';
-import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol , MDBContainer} from 'mdb-react-ui-kit';
 import Carousel from '../../components/home/carousel'
-
+import Navbar from '../../components/home/navbar'
 export default function feed(){
     const [posts,setPosts]= useState([]);
     async function getPosts(){
@@ -22,9 +22,11 @@ export default function feed(){
     },[]);
 
 return(
-    <div>
+    <div className = "feed-page-container">
+    <Navbar/>
     <Carousel/>
-    <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
+    <MDBContainer breakpoint="lg">
+    <MDBRow className='row-cols-1 row-cols-md-3 g-4' width={1000}>
     {posts.map(post => (
         <MDBCol>
               {  /* <div dangerouslySetInnerHTML={{__html: post.content}} />
@@ -47,6 +49,7 @@ return(
        
 ))}
     </MDBRow>
+    </MDBContainer>
     </div>
 )
 

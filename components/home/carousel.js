@@ -3,7 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 export default function App() {
   return (
-    <Carousel variant= 'dark' indicatorLabels='[1,2,3]' interval = {5000}>
+    <Carousel  wrap={true} interval = {5000}>
     <Carousel.Item >
       <img
         className="d-block w-100"
