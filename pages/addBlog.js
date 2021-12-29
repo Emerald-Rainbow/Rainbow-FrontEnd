@@ -4,9 +4,27 @@ import axios from 'axios';
 import Editor from "../components/Editor";
 import Styles from '../components/addBlog.module.css';
 
+function BlogTitle(props){
+  return(
+    <input
+      id="blogTitle"
+      className={Styles.titleInput}
+      value={props.blogTitle}
+      onChange={props.handleTitleChange}
+      placeholder="Enter a Title.."
+    ></input>
+  )
+}
+
 export default function addBlog() {
   const [editorHTML, setEditorHTML] =  useState("");
   const [blogTitle, setBlogTitle] =  useState("");
+
+  function handleTitleChange(e){
+    setBlogTitle(e.target.value);
+    console.log(e.target);
+    e.target.focus();
+  }
 
   async function handlePost(){
     // Disable Post button on front end
@@ -75,12 +93,14 @@ export default function addBlog() {
               height: '40px',
             }}
           >
-            <input
+            {/* <input
+              id="blogTitle"
               className={Styles.titleInput}
               value={blogTitle}
-              onChange={(e)=>{setBlogTitle(e.target.value);}}
+              onChange={handleTitleChange}
               placeholder="Enter a Title.."
-            ></input>
+            ></input> */}
+            <BlogTitle blogTitle={blogTitle} handleTitleChange={handleTitleChange} />
             <button
               className={Styles.postButton}
               onClick={handlePost}
