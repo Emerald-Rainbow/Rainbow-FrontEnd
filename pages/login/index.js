@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import firebaseApp from '../../utils/db/firebase';
 
-auth = getAuth(firebaseApp);
+const auth = getAuth(firebaseApp);
 
 export default function Login() {
 
