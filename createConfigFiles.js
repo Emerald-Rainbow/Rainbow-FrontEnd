@@ -32,7 +32,7 @@ fs.open(pathAdmin,'r',function(err, fd){
 
 const pathApp = './utils/db/firebaseConfig.js'
 const appConfig = `
-{
+const firebaseConfig = {
     "apiKey":"${process.env.apiKey}",\n
     "authDomain":"${process.env.authDomain}",\n
     "projectId":"${process.env.projectId}",\n
@@ -40,8 +40,9 @@ const appConfig = `
     "messagingSenderId":"${process.env.messagingSenderId}",\n
     "appId":"${process.env.appId}",\n
     "measurementId":"${process.env.measurementId}"\n
-}
-    `
+};
+export default firebaseConfig;
+`
     
 fs.open(pathApp,'r',function(err, fd){
     if (err) {
