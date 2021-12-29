@@ -320,6 +320,7 @@ export default function Editor(props) {
 
 
     function handleEditorChange(content, delta, source, editor){
+      console.log(content);
       props.setEditorHTML(editor.getHTML());
     }
 
