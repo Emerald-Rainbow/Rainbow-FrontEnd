@@ -39,7 +39,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-
+    const router = useRouter();
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     const[username,setUsername] = useState("");
