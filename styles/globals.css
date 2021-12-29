@@ -152,7 +152,11 @@ cursor: pointer;
   color: #E1BEE7;
   text-decoration: none
 }
-
+@media (max-width: 900px) {
+  .carousel {
+    width:100vw;
+    height: 50vh;
+  }}
 @media (max-width: 600px) {
   .loginmain {
       border-radius: 0px;
