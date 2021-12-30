@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  width: 100vw !important;
+ 
 }
 /*
 * {
@@ -159,15 +159,10 @@ cursor: pointer;
   width:50px !important;
   background-color: rgba(250, 250, 250, 0.7) !important;
 }
-.feed-page-container {
-  display: table !important;
-  width:100vw !important;
-  justify-content: center !important;
-  
-  
-}
-.feed-page-container {
-  width:100% !important;
+
+.container-lg{
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 @media (max-width: 600px) {
   .loginmain {
