@@ -2,17 +2,18 @@ import {useRef, useState, useEffect} from "react";
 import axios from 'axios';
 import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol , MDBContainer} from 'mdb-react-ui-kit';
 import Carousel from '../../components/home/carousel'
-import Navbar from '../../components/home/navbar'
+import Navbar from '../../components/home/Navbar'
 export default function feed(){
 
 
   function extractImage(string) {
-    const imgRex = /<img.*?src="(.*?)"[^>]+>/g;
+    const imgRex = /<img.*?src="(.*?)"[^>]*>/g;
     const images = [];
       let img;
       while ((img = imgRex.exec(string))) {
          images.push(img[1]);
       }
+      console.log(images);
     return images[0]?images[0]:"https://www.kalfound.org/Portals/0/Uploads/Images/Misc%20Graphics/LGBTQ_web_banner.png";
   }
   
