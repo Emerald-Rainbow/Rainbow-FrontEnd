@@ -165,6 +165,13 @@ cursor: pointer;
   margin-bottom: 1em;
 }
 
+.rainbow-text {
+  background-image: linear-gradient(to left, violet, indigo, blue, green, rgb(228, 228, 62), orange, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 0px 6px rgba(255,255,255,0.7);
+  
+}
 @media (max-width: 480px) {
   .carousel-item img{
       height: 40vh !important;
