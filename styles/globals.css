@@ -164,6 +164,13 @@ cursor: pointer;
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
+@media (max-width: 480px) {
+  .carousel-item img{
+      height: 40vh !important;
+      
+  }
+}
 @media (max-width: 600px) {
   .loginmain {
       border-radius: 0px;

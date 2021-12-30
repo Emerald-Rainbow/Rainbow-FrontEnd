@@ -7,7 +7,8 @@ export default function App() {
     <Carousel.Item >
       <img
         className="d-block w-100"
-        height= {500}
+       
+        style={ {height:'60vh'} }
         src="https://www.kalfound.org/Portals/0/Uploads/Images/Misc%20Graphics/LGBTQ_web_banner.png"
         alt="First slide"
       />
@@ -19,7 +20,7 @@ export default function App() {
     <Carousel.Item >
       <img
         className="d-block w-100"
-        height= {500}
+        style={ {height:'60vh'} }
         src="https://www.kalfound.org/Portals/0/Uploads/Images/Misc%20Graphics/LGBTQ_web_banner.png"
         alt="Second slide"
       />
@@ -32,7 +33,7 @@ export default function App() {
       <img
         className="d-block w-100"
         src="https://www.kalfound.org/Portals/0/Uploads/Images/Misc%20Graphics/LGBTQ_web_banner.png"
-        height={500}
+        style={ {height:'60vh'} }
         alt="Third slide"
       />
       <Carousel.Caption>
