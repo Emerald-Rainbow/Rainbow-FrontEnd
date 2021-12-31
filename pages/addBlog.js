@@ -3,32 +3,38 @@ import axios from 'axios';
 
 import Editor from "../components/Editor";
 import Styles from '../components/addBlog.module.css';
+import Spinner from 'react-bootstrap/Spinner';
+import { useRouter } from 'next/router';
 
 function BlogTitle(props){
   return(
     <input
+      ref = {props.titleRef}
       id="blogTitle"
       className={Styles.titleInput}
-      value={props.blogTitle}
-      onChange={props.handleTitleChange}
       placeholder="Enter a Title.."
     ></input>
   )
 }
 
 export default function addBlog() {
-  const [editorHTML, setEditorHTML] =  useState("");
-  const [blogTitle, setBlogTitle] =  useState("");
+  // const [editorHTML, setEditorHTML] =  useState("");
+  const [spinnerHidden, setSpinnerHidden] =  useState(true);
+  const editorRef = useRef(null);
+  const titleRef = useRef(null);
+  const router = useRouter();
 
-  function handleTitleChange(e){
-    setBlogTitle(e.target.value);
-    console.log(e.target);
-    e.target.focus();
-  }
+  // function handleTitleChange(e){
+  //   setBlogTitle(e.target.value);
+  //   console.log(e.target);
+  //   e.target.focus();
+  // }
 
   async function handlePost(){
     // Disable Post button on front end
+
     // Show loading Icon
+    setSpinnerHidden(false);
 
     const d = new Date();
     // *****************************************************
@@ -36,13 +42,21 @@ export default function addBlog() {
     let userId = 123456;
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
     let createdAt = `${d.getHours()}:${d.getMinutes()}  ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+    let editor = editorRef.current.getEditor();
+    let unprivEditor = editorRef.current.makeUnprivilegedEditor(editor);
+    let editorHTML = unprivEditor.getHTML();
+    let title = titleRef.current.value;
     let data = {
       userId    : userId,
-      title     : blogTitle,
+      title     : title,
       content   : editorHTML,
       createdAt : createdAt
     };
+    // .editor.getContents().ops
+
     console.log(JSON.stringify(data));
+    console.log();
+
     const res = await axios.post('/api/blog', JSON.stringify(data), {
         headers: {
         // Overwrite Axios's automatically set Content-Type
@@ -50,6 +64,16 @@ export default function addBlog() {
       }
     });
     console.log(res);
+    const docId = res.data;
+    if(res.status == 200)
+    {
+      console.log("Success!");
+      router.push(`/posts/${docId}`);
+    }
+    else
+    {
+      console.log("Failed!");
+    }
 
     // Shpw alert Success or something
     // Redirect to Blog Page or something
@@ -100,18 +124,28 @@ export default function addBlog() {
               onChange={handleTitleChange}
               placeholder="Enter a Title.."
             ></input> */}
-            <BlogTitle blogTitle={blogTitle} handleTitleChange={handleTitleChange} />
+            <BlogTitle titleRef={titleRef} />
             <button
               className={Styles.postButton}
               onClick={handlePost}
+              disabled={spinnerHidden?false:true}
             >
               <span style={{ 
                 paddingRight: "3px",
                 fontSize:'16px',
                 verticalAlign: 'middle',
                 }}>Post</span>
-  
+              <Spinner 
+                  animation="border" 
+                  role="status" 
+                  variant="info" 
+                  size="sm" 
+                  hidden={spinnerHidden}>
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
               <svg
+                id = "postIcon"
+                hidden={spinnerHidden?false:true}
                 width="18"
                 height="18"
                 viewBox="0 0 14 14"
@@ -127,7 +161,8 @@ export default function addBlog() {
               </svg>
             </button>
           </div>
-          <Editor placeholder="Add blog content!" editorHTML={editorHTML} setEditorHTML={setEditorHTML} />
+          {/* <Editor placeholder="Add blog content!" editorHTML={editorHTML} setEditorHTML={setEditorHTML} editorRef={editorRef} /> */}
+          <Editor placeholder="Add blog content!" editorRef={editorRef} />
         </div>
       </div>
       <svg

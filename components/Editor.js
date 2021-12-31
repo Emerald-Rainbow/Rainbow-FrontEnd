@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 
-// import ImageUploader from "quill-image-uploader";
 import {v4 as uuidv4} from 'uuid';
 import axios from 'axios'
 import "react-quill/dist/quill.snow.css";
@@ -190,7 +189,7 @@ export default function Editor(props) {
     const optIconRef = useRef(null);
     const ellipsRef = useRef(null);
     const inputRef = useRef(null);
-    const editorRef = useRef(null);
+    // const editorRef = useRef(null);
 
     
     const [checked, setChecked] = useState(false);
@@ -288,7 +287,7 @@ export default function Editor(props) {
 
       function insertToEditor(url) {
         // push image url to rich editor.
-        const editor = editorRef.current.getEditor();
+        const editor = props.editorRef.current.getEditor();
         const range = editor.getSelection();
         editor.insertEmbed(range.index, 'image', url);
       }
@@ -319,11 +318,6 @@ export default function Editor(props) {
     }
 
 
-    function handleEditorChange(content, delta, source, editor){
-      console.log(content);
-      props.setEditorHTML(editor.getHTML());
-    }
-
 
     return (
       <div
@@ -349,8 +343,7 @@ export default function Editor(props) {
         <ReactQuill
           placeholder={props.placeholder}
           modules={modules}
-          onChange = {handleEditorChange}
-          ref={editorRef}
+          ref={props.editorRef}
           style={{
             // flex: "1",
             width: "100%",

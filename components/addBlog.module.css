@@ -32,17 +32,17 @@
     font-weight: 700;
 }
 
-.postButton:hover{
+.postButton:hover:enabled{
     /* border: 10px solid red; */
     color: #34346b;
 }
-.postButton:hover .postIcon {
+.postButton:hover:enabled .postIcon {
     fill:#34346b
 }
-.postButton:active{
+.postButton:active:enabled{
     color:#2282ce;
 }
-.postButton:active .postIcon {
+.postButton:active:enabled .postIcon {
     fill:#2282ce;
 }
 /* .titleInput:focus{
