@@ -3,7 +3,10 @@ import axios from 'axios';
 import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol , MDBContainer} from 'mdb-react-ui-kit';
 import Carousel from '../../components/home/carousel'
 import Navbar from '../../components/home/Navbar'
-export default function feed(){
+import router from "next/router";
+
+
+export default function feed(props){
 
 
   function extractImage(string) {
@@ -89,7 +92,10 @@ return(
     {posts.map(post => (
         <MDBCol>
               {  /*  */ } 
-        <MDBCard className="h-100">
+        <MDBCard className="h-100" onClick={()=>{
+           
+            router.push(`/posts/${post.blogId}`);
+        }}>
           <MDBCardImage
             src={extractImage(post.content)}
             alt='Hollywood Sign on The Hill'
