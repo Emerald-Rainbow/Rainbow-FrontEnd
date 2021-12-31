@@ -3,11 +3,30 @@ import axios from 'axios';
 import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol , MDBContainer} from 'mdb-react-ui-kit';
 import Carousel from '../../components/home/carousel'
 import Navbar from '../../components/home/Navbar'
-import router from "next/router";
+import {useRouter} from "next/router";
+import { CheckCircleOutlineSharp } from "@mui/icons-material";
+import { db, auth } from "../../utils/firebase";
+import { collection, addDoc, query, where , getDocs } from "firebase/firestore"
 
 
-export default function feed(props){
-
+export default function feed(){
+  const router = useRouter();
+  const [userSignedIn, setUserSignedIn] = useState(false);
+  async function checkUser(){
+    console.log("hi"+auth.currentUser);
+    if(auth.currentUser){
+      console.log(auth.currentUser.uid);
+      const userRef =  collection(db,"users");
+       const q = query(userRef, where("id", "==", auth.currentUser.uid));
+       const querySnapshot = await getDocs(q);
+        if(querySnapshot.empty){
+          router.push("/signup");
+        }
+        else{
+          setUserSignedIn(true);
+        }
+    }
+  }
 
   function extractImage(string) {
     const imgRex = /<img.*?src="(.*?)"[^>]*>/g;
@@ -79,13 +98,14 @@ export default function feed(props){
        }
 
     useEffect(()=>{
+ checkUser();    
  getPosts();
  console.log(posts);
-    },[]);
+    },[auth]);
 
 return(
     <div className = "feed-page-container">
-    <Navbar/>
+    <Navbar userSignedIn={userSignedIn} setUserSignedIn = {setUserSignedIn}/>
     <Carousel/>
     <MDBContainer breakpoint="lg">
     <MDBRow className='row-cols-1 row-cols-md-3 g-4' width={1000}>

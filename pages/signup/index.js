@@ -48,17 +48,12 @@ export default function SignUp() {
     const register = async () => {
       try {
         
-       createUserWithEmailAndPassword(
-        auth,  
-        registerEmail,
-          registerPassword
-        ).then(()=>{
+       
           addDoc(collection(db, "users"), {
             id: auth.currentUser.uid,
             username:username,
             phone:phone
-          });
-              }).then(()=>{
+          }).then(()=>{
                 router.push('/feed')
       
               })
@@ -73,8 +68,7 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    setRegisterEmail(data.get('email'));
-    setRegisterPassword(data.get('password'));
+   
     setUsername(data.get('username'));
     setPhone(data.get('phone'));
     
@@ -82,9 +76,9 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-    if(registerEmail!=='')
+    if(username!==''&&phone!=='')
     register();
-}, [phone,username,registerEmail,registerPassword]);
+}, [phone,username]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -106,7 +100,7 @@ export default function SignUp() {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} >
                 <TextField
                   autoComplete="given-name"
                   name="username"
@@ -117,7 +111,7 @@ export default function SignUp() {
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} >
                 <TextField
                   required
                   fullWidth
@@ -127,27 +121,8 @@ export default function SignUp() {
                   autoComplete="phone number"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
+            
+            
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
