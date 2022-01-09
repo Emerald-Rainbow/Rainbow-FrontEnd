@@ -8,6 +8,7 @@ import { CheckCircleOutlineSharp } from "@mui/icons-material";
 import { db, auth } from "../../utils/firebase";
 import { collection, addDoc, query, where , getDocs } from "firebase/firestore"
 
+import Skeleton from '@mui/material/Skeleton';
 
 export default function feed(){
   const router = useRouter();
@@ -85,13 +86,15 @@ export default function feed(){
   function rangeLength(range) {
     return range.toString().length;
   }
-    const [posts,setPosts]= useState([]);
+    const [posts,setPosts]= useState([0,0,0,0,0,0]);
+    const [loading,setLoading]= useState(true);
     async function getPosts(){
         try{
         
         const res = await axios.get('api/getBlogs');
          console.log(res.data);
           setPosts(res.data);
+          setLoading(false);
            }catch(err){
                console.log(err);
                }
@@ -112,24 +115,34 @@ return(
     {posts.map(post => (
         <MDBCol>
               {  /*  */ } 
-        <MDBCard className="h-100" onClick={()=>{
-           
-            router.push(`/posts/${post.blogId}`);
-        }}>
+        
+          {loading ? (
+          <MDBCard className="h-100" >
+           <Skeleton variant="rectangular" height={200} />
+            <MDBCardBody>
+               <MDBCardTitle> <Skeleton /> </MDBCardTitle>
+               <MDBCardText><Skeleton /> </MDBCardText>
+            </MDBCardBody>
+          </MDBCard>):
+          ( <MDBCard className="h-100" >
           <MDBCardImage
             src={extractImage(post.content)}
             alt='Hollywood Sign on The Hill'
             position='top'
             height= {200}
+            onClick={()=>{
+           
+              router.push(`/posts/${post.blogId}`);
+          }}
           />
           <MDBCardBody>
             <MDBCardTitle>{post.title}</MDBCardTitle>
             <MDBCardText>
             <div dangerouslySetInnerHTML={{__html:htmlToLength(post.content.replace(/<img[^>]*>/g,""),30)}} />
                     
-            </MDBCardText>
+            </MDBCardText>)
           </MDBCardBody>
-        </MDBCard>
+        </MDBCard>)}
       </MDBCol>
         
        
