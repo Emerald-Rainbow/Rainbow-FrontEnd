@@ -7,17 +7,22 @@ import {useRouter} from "next/router";
 import { CheckCircleOutlineSharp } from "@mui/icons-material";
 import { db, auth } from "../../utils/firebase";
 import { collection, addDoc, query, where , getDocs } from "firebase/firestore"
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import Skeleton from '@mui/material/Skeleton';
 
 export default function feed(){
   const router = useRouter();
   const [userSignedIn, setUserSignedIn] = useState(false);
-  async function checkUser(){
-    console.log("hi"+auth.currentUser);
-    if(auth.currentUser){
-      console.log(auth.currentUser.uid);
-      const userRef =  collection(db,"users");
+  const [currentUser, setUser] = useState(null);
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+          
+        setUser(user);
+        const uid = user.uid;
+        const userRef =  collection(db,"users");
        const q = query(userRef, where("id", "==", auth.currentUser.uid));
        const querySnapshot = await getDocs(q);
         if(querySnapshot.empty){
@@ -26,8 +31,14 @@ export default function feed(){
         else{
           setUserSignedIn(true);
         }
-    }
-  }
+        // ...
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
+    
+  
 
   function extractImage(string) {
     const imgRex = /<img.*?src="(.*?)"[^>]*>/g;
@@ -101,14 +112,14 @@ export default function feed(){
        }
 
     useEffect(()=>{
- checkUser();    
+    
  getPosts();
  console.log(posts);
-    },[auth]);
+    },[]);
 
 return(
     <div className = "feed-page-container">
-    <Navbar userSignedIn={userSignedIn} setUserSignedIn = {setUserSignedIn}/>
+    <Navbar userSignedIn={userSignedIn} setUserSignedIn = {setUserSignedIn} user = {currentUser}/>
     <Carousel/>
     <MDBContainer breakpoint="lg">
     <MDBRow className='row-cols-1 row-cols-md-3 g-4' width={1000}>
@@ -140,7 +151,7 @@ return(
             <MDBCardText>
             <div dangerouslySetInnerHTML={{__html:htmlToLength(post.content.replace(/<img[^>]*>/g,""),30)}} />
                     
-            </MDBCardText>)
+            </MDBCardText>
           </MDBCardBody>
         </MDBCard>)}
       </MDBCol>

@@ -17,11 +17,13 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useRouter} from 'next/router';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithRedirect, setPersistence } from "firebase/auth";
 import { db, auth } from "../../utils/firebase";
 import { collection, addDoc, query, where , getDocs} from "firebase/firestore"; 
 import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
 
+const provider = new GoogleAuthProvider();
 const theme = createTheme({
   //createTheme is a function that takes in a theme object and returns a ThemeProvider
   palette: {
@@ -89,7 +91,7 @@ export default function PrimarySearchAppBar(props) {
   
  function signInWithGoogle() { 
    console.log("signInWithGoogle");
-   signInWithPopup(auth, new GoogleAuthProvider())
+   signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -212,8 +214,8 @@ export default function PrimarySearchAppBar(props) {
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
-        >
-          <AccountCircle />
+        >  {props.userSignedIn ? <Avatar alt={props.user.displayName} src={props.user.photoURL} /> : <AccountCircle /> }
+          
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -273,7 +275,7 @@ export default function PrimarySearchAppBar(props) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+             {props.userSignedIn ? <Avatar alt={props.user.displayName} src={props.user.photoURL} /> : <AccountCircle /> }
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
