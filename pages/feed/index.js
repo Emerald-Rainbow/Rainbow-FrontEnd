@@ -8,13 +8,18 @@ import { CheckCircleOutlineSharp } from "@mui/icons-material";
 import { db, auth } from "../../utils/firebase";
 import { collection, addDoc, query, where , getDocs } from "firebase/firestore"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
+import Masonry from '@mui/lab/Masonry';
 import Skeleton from '@mui/material/Skeleton';
+import Container from '@mui/material/Container';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function feed(){
   const router = useRouter();
   const [userSignedIn, setUserSignedIn] = useState(false);
   const [currentUser, setUser] = useState(null);
+  const [masonryRow, setMasonryRow] = useState(3);
+  const matches = useMediaQuery('(max-width:600px)');
+ 
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
@@ -112,30 +117,41 @@ export default function feed(){
        }
 
     useEffect(()=>{
-    
+     
  getPosts();
  console.log(posts);
     },[]);
+
+  useEffect(()=>{
+    
+    if(matches){
+      setMasonryRow(1);
+    }
+    else{
+      setMasonryRow(3);
+    }
+  },[matches]);
 
 return(
     <div className = "feed-page-container">
     <Navbar userSignedIn={userSignedIn} setUserSignedIn = {setUserSignedIn} user = {currentUser}/>
     <Carousel/>
     <MDBContainer breakpoint="lg">
-    <MDBRow className='row-cols-1 row-cols-md-3 g-4' width={1000}>
+        <Masonry columns={masonryRow} spacing={2} >
     {posts.map(post => (
-        <MDBCol>
-              {  /*  */ } 
+        
+        <MDBCard>
         
           {loading ? (
-          <MDBCard className="h-100" >
+          <>
            <Skeleton variant="rectangular" height={200} />
             <MDBCardBody>
                <MDBCardTitle> <Skeleton /> </MDBCardTitle>
                <MDBCardText><Skeleton /> </MDBCardText>
             </MDBCardBody>
-          </MDBCard>):
-          ( <MDBCard className="h-100" >
+          </>
+         ):
+          ( <>
           <MDBCardImage
             src={extractImage(post.content)}
             alt='Hollywood Sign on The Hill'
@@ -148,18 +164,20 @@ return(
           />
           <MDBCardBody>
             <MDBCardTitle>{post.title}</MDBCardTitle>
-            <MDBCardText>
-            <div dangerouslySetInnerHTML={{__html:htmlToLength(post.content.replace(/<img[^>]*>/g,""),30)}} />
+            <MDBCardText className="text-truncate" style={{maxHeight: 150}}>
+            <div dangerouslySetInnerHTML={{__html:post.content.replace(/<img[^>]*>/g,"")}} />
                     
             </MDBCardText>
           </MDBCardBody>
-        </MDBCard>)}
-      </MDBCol>
+        
+        </>)}
+        </MDBCard>
+    ))}
         
        
-))}
-    </MDBRow>
-    </MDBContainer>
+        </Masonry>
+        </ MDBContainer>
+    
     </div>
 )
 

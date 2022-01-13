@@ -238,7 +238,7 @@ export default function PrimarySearchAppBar(props) {
           </IconButton>
 
           <Typography
-            variant="h5"
+            variant="h6"
             
             component="div"
             sx={{ display: {  sm: 'block' } }}
