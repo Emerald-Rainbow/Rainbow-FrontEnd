@@ -18,7 +18,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { useRouter} from 'next/router';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithRedirect, setPersistence } from "firebase/auth";
-import { db, auth } from "../../utils/firebase";
+import { db, auth } from "../../../utils/firebase";
 import { collection, addDoc, query, where , getDocs} from "firebase/firestore"; 
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';

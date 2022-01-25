@@ -19,7 +19,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
-import {auth, db} from '../../utils/firebase'
+import {auth, db} from '../../../utils/firebase'
 import { collection, addDoc } from "firebase/firestore"; 
 import { useRouter } from 'next/router'
 
