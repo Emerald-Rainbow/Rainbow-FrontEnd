@@ -1,5 +1,5 @@
-import db from '../../utils/db/firebaseAdmin';
-import Blog from '../../utils/models/blogModel';
+import db from '../../../utils/db/firebaseAdmin';
+import Blog from '../../../utils/models/blogModel';
 
 export default async (req, res) => {
     try {

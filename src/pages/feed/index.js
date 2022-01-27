@@ -5,7 +5,7 @@ import Carousel from '../../components/home/carousel'
 import Navbar from '../../components/home/Navbar'
 import {useRouter} from "next/router";
 import { CheckCircleOutlineSharp } from "@mui/icons-material";
-import { db, auth } from "../../utils/firebase";
+import { db, auth } from "../../../utils/firebase";
 import { collection, addDoc, query, where , getDocs } from "firebase/firestore"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Masonry from '@mui/lab/Masonry';

@@ -7,7 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import styles from "./Editor.module.css";
 
 import { getDownloadURL, getStorage, ref as fireRef, uploadBytes} from "firebase/storage";
-import firebaseApp from '../utils/db/firebase';
+import firebaseApp from '../../utils/db/firebase';
 
 const storage = getStorage(firebaseApp);
 
