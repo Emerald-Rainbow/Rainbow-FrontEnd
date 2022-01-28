@@ -1,9 +1,9 @@
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
-import Header from './Header'
-import Filter from './Filter'
-import Listings from './Listings'
-import listingsData from './data/ListingsData'
+import Header from '../../components/housing/Header1'
+import Filter from '../../components/housing/Filter'
+import Listings from '../../components/housing/Listings'
+import listingsData from '../../components/housing/Data/ListingsData'
 //import './styles/main.css'; 
 
 
