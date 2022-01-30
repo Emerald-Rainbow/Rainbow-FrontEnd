@@ -17,11 +17,13 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useRouter} from 'next/router';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithRedirect, setPersistence } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithRedirect, setPersistence, signOut } from "firebase/auth";
 import { db, auth } from "../../../utils/firebase";
 import { collection, addDoc, query, where , getDocs} from "firebase/firestore"; 
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+
 
 const provider = new GoogleAuthProvider();
 const theme = createTheme({
@@ -166,7 +168,13 @@ export default function PrimarySearchAppBar(props) {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={
+        ()=>{
+          signOut(auth).then(() => {
+          props.setUserSignedIn(false);
+          handleMenuClose();
+})}
+}>Log out</MenuItem>
     </Menu>
   );
 
@@ -187,6 +195,7 @@ export default function PrimarySearchAppBar(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+    
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
@@ -217,7 +226,7 @@ export default function PrimarySearchAppBar(props) {
         >  {props.userSignedIn ? <Avatar alt={props.user.displayName} src={props.user.photoURL} /> : <AccountCircle /> }
           
         </IconButton>
-        <p>Profile</p>
+        <p>{props?.user?.displayName}</p>
       </MenuItem>
     </Menu>
   );
@@ -225,7 +234,7 @@ export default function PrimarySearchAppBar(props) {
   return (
     <ThemeProvider theme={theme}>
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" >
+      <AppBar position="fixed" >
         <Toolbar>
           <IconButton
             size="large"
@@ -251,7 +260,11 @@ export default function PrimarySearchAppBar(props) {
           <Box sx={{ flexGrow: 1 }} />
           {!props.userSignedIn ?<Button variant="outlined" color ="inherit" size = "large" onClick={()=>{signInWithGoogle()}}>Sign In</Button> : 
           <div>
+            
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={()=>{router.push("/addBlog")}}>
+            <AddCircleIcon />
+              </IconButton>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
                 <MailIcon />
@@ -279,6 +292,13 @@ export default function PrimarySearchAppBar(props) {
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <IconButton
+           size="large" 
+           aria-label="show 4 new mails" 
+           color="inherit"
+           onClick={()=>{router.push("/addBlog")}}> 
+            <AddCircleIcon />
+              </IconButton>
             <IconButton
               size="large"
               aria-label="show more"
