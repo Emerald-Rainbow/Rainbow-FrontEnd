@@ -1,4 +1,4 @@
-import '@styles/globals.css'
+ import '@styles/globals.css'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 import Head from 'next/head'
 import { useState } from "react"

@@ -23,7 +23,7 @@ import { collection, addDoc, query, where , getDocs} from "firebase/firestore";
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-
+import Drawer from './Drawer';
 
 const provider = new GoogleAuthProvider();
 const theme = createTheme({
@@ -89,7 +89,7 @@ export default function PrimarySearchAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [userSignedIn, setUserSignedIn] = React.useState(false);
-   
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
   
  function signInWithGoogle() { 
    console.log("signInWithGoogle");
@@ -133,6 +133,9 @@ export default function PrimarySearchAppBar(props) {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
+  }
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -140,7 +143,7 @@ export default function PrimarySearchAppBar(props) {
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
-
+  
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
@@ -224,6 +227,7 @@ export default function PrimarySearchAppBar(props) {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={handleDrawerOpen}
           >
             <MenuIcon />
           </IconButton>
@@ -287,7 +291,7 @@ export default function PrimarySearchAppBar(props) {
       {renderMobileMenu}
       {renderMenu}
     </Box>
-          
+        <Drawer setDrawerOpen = {setDrawerOpen} drawerOpen = {drawerOpen} />
     </ThemeProvider>
   );
 }

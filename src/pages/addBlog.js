@@ -1,6 +1,8 @@
 import {useRef, useState} from "react";
 import axios from 'axios';
-
+import { db, auth } from "../../utils/firebase";
+import { collection, addDoc, query, where , getDocs } from "firebase/firestore"
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Editor from "../components/Editor";
 import Styles from '../components/addBlog.module.css';
 import Spinner from 'react-bootstrap/Spinner';
@@ -24,6 +26,28 @@ export default function addBlog() {
   const titleRef = useRef(null);
   const router = useRouter();
 
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+        
+    
+      const uid = user.uid;
+      const userRef =  collection(db,"users");
+     const q = query(userRef, where("id", "==", auth.currentUser.uid));
+     const querySnapshot = await getDocs(q);
+      if(querySnapshot.empty){
+        router.push("/signup");
+      }
+      else{
+        
+      }
+      // ...
+    } else {
+      router.push("/");      
+    }
+  });
+
   // function handleTitleChange(e){
   //   setBlogTitle(e.target.value);
   //   console.log(e.target);
@@ -39,7 +63,7 @@ export default function addBlog() {
     const d = new Date();
     // *****************************************************
     // Change User Id When Auth is setup
-    let userId = 123456;
+    let userId = auth.currentUser.uid;
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
     let createdAt = `${d.getHours()}:${d.getMinutes()}  ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
     let editor = editorRef.current.getEditor();
@@ -50,7 +74,8 @@ export default function addBlog() {
       userId    : userId,
       title     : title,
       content   : editorHTML,
-      createdAt : createdAt
+      createdAt : createdAt,
+      likes    : 0
     };
     // .editor.getContents().ops
 
