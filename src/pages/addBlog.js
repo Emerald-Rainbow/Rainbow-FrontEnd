@@ -1,4 +1,5 @@
-import {useRef, useState} from "react";
+import {useRef, useState, useContext} from "react";
+import UserContext from '@context/user/UserContext';
 import axios from 'axios';
 import { db, auth } from "../../utils/firebase";
 import { collection, addDoc, query, where , getDocs } from "firebase/firestore"
@@ -7,6 +8,8 @@ import Editor from "../components/Editor";
 import Styles from '../components/addBlog.module.css';
 import Spinner from 'react-bootstrap/Spinner';
 import { useRouter } from 'next/router';
+import ProtectedRoute from '@components/ProtectedRoute/ProtectedRoute';
+
 
 function BlogTitle(props){
   return(
@@ -21,32 +24,12 @@ function BlogTitle(props){
 
 export default function addBlog() {
   // const [editorHTML, setEditorHTML] =  useState("");
+  const {user, userLoading, userError, logout} = useContext(UserContext);
   const [spinnerHidden, setSpinnerHidden] =  useState(true);
   const editorRef = useRef(null);
   const titleRef = useRef(null);
   const router = useRouter();
 
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-        
-    
-      const uid = user.uid;
-      const userRef =  collection(db,"users");
-     const q = query(userRef, where("id", "==", auth.currentUser.uid));
-     const querySnapshot = await getDocs(q);
-      if(querySnapshot.empty){
-        router.push("/signup");
-      }
-      else{
-        
-      }
-      // ...
-    } else {
-      router.push("/");      
-    }
-  });
 
   // function handleTitleChange(e){
   //   setBlogTitle(e.target.value);
@@ -63,7 +46,7 @@ export default function addBlog() {
     const d = new Date();
     // *****************************************************
     // Change User Id When Auth is setup
-    let userId = auth.currentUser.uid;
+    let userId = user.uid;
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
     let createdAt = `${d.getHours()}:${d.getMinutes()}  ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
     let editor = editorRef.current.getEditor();
@@ -105,7 +88,7 @@ export default function addBlog() {
   }
   return (
     <>
-      
+      <ProtectedRoute>
       <div
         className={Styles.backDrop}
         style={{
@@ -142,13 +125,6 @@ export default function addBlog() {
               height: '40px',
             }}
           >
-            {/* <input
-              id="blogTitle"
-              className={Styles.titleInput}
-              value={blogTitle}
-              onChange={handleTitleChange}
-              placeholder="Enter a Title.."
-            ></input> */}
             <BlogTitle titleRef={titleRef} />
             <button
               className={Styles.postButton}
@@ -209,6 +185,7 @@ export default function addBlog() {
           fill="#51CA26"
         />
       </svg>
+      </ProtectedRoute>
     </>
   );
 }
