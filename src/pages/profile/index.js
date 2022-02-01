@@ -8,11 +8,12 @@ export default function profile() {
     // setTimeout(logout,5000);
     return(
     <>
-        <ProtectedRoute/>
-        <h1>
-            Profile Page  
-            {userLoading  && " Loading"}
-            {user && user.displayName}
-        </h1>
+        <ProtectedRoute>
+            <h1>
+                Profile Page  
+                {userLoading  && " Loading"}
+                {user && user.displayName}
+            </h1>
+        </ProtectedRoute>
     </>)
 }
