@@ -198,3 +198,10 @@ cursor: pointer;
   outline: none;
 }
  */
+
+ .postspage img{
+  
+      width: 300px !important;
+      height: 300px !important;
+   
+ }

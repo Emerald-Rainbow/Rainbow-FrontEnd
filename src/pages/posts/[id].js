@@ -2,6 +2,7 @@ import {useRouter} from 'next/router'
 import {useEffect, useState} from 'react'
 import axios from 'axios';
 import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol , MDBContainer} from 'mdb-react-ui-kit';
+import Container from '@mui/material/Container';
 export default function Post() {
 const [post, setPost] = useState('');
 const router = useRouter();
@@ -22,12 +23,12 @@ useEffect(()=>{
 },[id]); 
 
 return (
-  <div>
+  <div className='postspage'>
     
-    <MDBContainer breakpoint="lg">
+    <Container maxWidth="lg" fixed>
     <h1>{post.title}</h1>
     <div dangerouslySetInnerHTML={{__html:post.content}} />
-    </MDBContainer>
+    </Container>
   </div>
 )
 }
