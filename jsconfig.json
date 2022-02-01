@@ -3,7 +3,9 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@context/*": ["src/context/*"],
+      "@firebaseUtils/*": ["src/firebase/*"]
     }
   }
 }

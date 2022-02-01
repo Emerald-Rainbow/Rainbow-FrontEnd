@@ -28,8 +28,8 @@ export default function feed(){
         setUser(user);
         const uid = user.uid;
         const userRef =  collection(db,"users");
-       const q = query(userRef, where("id", "==", auth.currentUser.uid));
-       const querySnapshot = await getDocs(q);
+        const q = query(userRef, where("id", "==", auth.currentUser.uid));
+        const querySnapshot = await getDocs(q);
         if(querySnapshot.empty){
           router.push("/signup");
         }
