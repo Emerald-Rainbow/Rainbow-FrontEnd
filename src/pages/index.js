@@ -12,7 +12,7 @@ import Masonry from '@mui/lab/Masonry';
 import Skeleton from '@mui/material/Skeleton';
 import Container from '@mui/material/Container';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
+import HomeCard from '../components/home/card';
 export default function feed(){
   const router = useRouter();
   const [userSignedIn, setUserSignedIn] = useState(false);
@@ -140,38 +140,9 @@ return(
         <Masonry columns={masonryRow} spacing={2} >
     {posts.map(post => (
         
-        <MDBCard>
-        
-          {loading ? (
-          <>
-           <Skeleton variant="rectangular" height={200} />
-            <MDBCardBody>
-               <MDBCardTitle> <Skeleton /> </MDBCardTitle>
-               <MDBCardText><Skeleton /> </MDBCardText>
-            </MDBCardBody>
-          </>
-         ):
-          ( <>
-          <MDBCardImage
-            src={extractImage(post.content)}
-            alt='Hollywood Sign on The Hill'
-            position='top'
-            height= {200}
-            onClick={()=>{
-           
-              router.push(`/posts/${post.blogId}`);
-          }}
-          />
-          <MDBCardBody>
-            <MDBCardTitle>{post.title}</MDBCardTitle>
-            <MDBCardText className="text-truncate" style={{maxHeight: 150}}>
-            <div dangerouslySetInnerHTML={{__html:post.content.replace(/<img[^>]*>/g,"")}} />
-                    
-            </MDBCardText>
-          </MDBCardBody>
-        
-        </>)}
-        </MDBCard>
+    
+        <HomeCard post={post} loading = {loading}/>
+
     ))}
         
        
@@ -184,3 +155,4 @@ return(
 }
 
 
+  

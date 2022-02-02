@@ -16,9 +16,11 @@ import HomeIcon from '@mui/icons-material/Home';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-
+import {useRouter} from 'next/router';
 const drawerWidth = 240;
 
+
+ 
 const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
@@ -30,7 +32,15 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   
 
 const Appdrawer = (props) => {
-
+  let drawerElementColor = [];
+  const router = useRouter();
+  ["/", "/addBlog", "/Booking", "/housing"].map((path,index) => {
+    if (router.asPath === path) 
+     { drawerElementColor[index] =  "Black";}
+    else { drawerElementColor[index] =  "primary";}
+  });
+ 
+ console.log(router.asPath);
  const theme = useTheme();
   return (
        <Drawer
@@ -54,29 +64,29 @@ const Appdrawer = (props) => {
         <Divider />
         <List>
           
-            <ListItem button key= "Home">
-              <ListItemIcon>
+            <ListItem button key= "Home" sx = {{color: drawerElementColor[0]}} onClick= {()=>router.push('/')}>
+              <ListItemIcon sx = {{color: drawerElementColor[0]}}>
                 <HomeIcon />
               </ListItemIcon>
               <ListItemText primary= "Home" />
             </ListItem>
 
-            <ListItem button key= "Create Post">
-              <ListItemIcon>
+            <ListItem button key= "Create Post" sx = {{color: drawerElementColor[1]}} onClick= {()=>router.push('/addBlog')}>
+              <ListItemIcon sx = {{color: drawerElementColor[1]}}>
                 <AddBoxIcon />
               </ListItemIcon>
               <ListItemText primary= "Create Post" />
             </ListItem>
 
-            <ListItem button key="Book Tickets">
-              <ListItemIcon>
+            <ListItem button key="Book Tickets" sx = {{color: drawerElementColor[2]}} onClick= {()=>router.push('/booking')}>
+              <ListItemIcon sx = {{color: drawerElementColor[2]}}>
                 <ConfirmationNumberIcon />
               </ListItemIcon>
               <ListItemText primary= "Book Tickets" />
             </ListItem>
 
-            <ListItem button key="Housing">
-              <ListItemIcon>
+            <ListItem button key="Housing" sx = {{color: drawerElementColor[3]}} onClick= {()=>router.push('/housing')}>
+              <ListItemIcon sx = {{color: drawerElementColor[3]}}>
                 <ApartmentIcon />
               </ListItemIcon>
               <ListItemText primary= "Housing" />
