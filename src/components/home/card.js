@@ -10,7 +10,7 @@ import CardActions from '@mui/material/CardActions';
 
 import IconButton from '@mui/material/IconButton';
 import Skeleton from '@mui/material/Skeleton';
-
+import {useRouter} from 'next/router';
 
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -18,7 +18,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 
 export default function HomeCard(props) {
-
+    const router = useRouter();
     const [image, setImage] = React.useState(0);
 
     function extractImage(string) {
@@ -92,7 +92,11 @@ export default function HomeCard(props) {
 
     (<Card >
         
-      <CardActionArea>
+      <CardActionArea
+       onClick={()=>{
+           
+        router.push(`/posts/${props.post.blogId}`);
+    }}>
         {image?<CardMedia
           component="img"
           height="140"
