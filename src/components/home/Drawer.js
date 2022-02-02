@@ -34,7 +34,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const Appdrawer = (props) => {
   let drawerElementColor = [];
   const router = useRouter();
-  ["/", "/addBlog", "/Booking", "/hosuing"].map((path,index) => {
+  ["/", "/addBlog", "/Booking", "/housing"].map((path,index) => {
     if (router.asPath === path) 
      { drawerElementColor[index] =  "Black";}
     else { drawerElementColor[index] =  "primary";}
