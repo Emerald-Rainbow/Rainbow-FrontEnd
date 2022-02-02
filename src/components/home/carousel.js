@@ -9,7 +9,7 @@ export default function App() {
       <img
         className="d-block w-100"
         
-        style={ {height:'60vh', backgroundColor:'black'}}
+        style={ {height:'80vh', backgroundColor:'black'}}
         src="https://i2.wp.com/www.outfrontmagazine.com/wp-content/uploads/2018/01/GCN2016_EmikoHall-379.jpg?fit=1000%2C667&ssl=1"
         alt="First slide"
       />
@@ -21,7 +21,7 @@ export default function App() {
     <Carousel.Item >
       <img
         className="d-block w-100"
-        style={ {height:'60vh'} }
+        style={ {height:'80vh'} }
         src="https://blogs.flinders.edu.au/fit/wp-content/uploads/sites/19/2018/07/mental-health-3337026_1280.jpg"
         alt="Second slide"
       />
@@ -34,7 +34,7 @@ export default function App() {
       <img
         className="d-block w-100"
         src="https://www.halldale.com/ext/resources/2020/11/metaverse_DMcreate.jpg?t=1605633406&width=1080"
-        style={ {height:'60vh'} }
+        style={ {height:'80vh'} }
         alt="Third slide"
       />
       <Carousel.Caption style = {{background:"rgba(0, 0, 0, 0.5)"}}>
