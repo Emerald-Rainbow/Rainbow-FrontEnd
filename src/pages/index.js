@@ -12,7 +12,7 @@ import Masonry from '@mui/lab/Masonry';
 import Skeleton from '@mui/material/Skeleton';
 import Container from '@mui/material/Container';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
+import HomeCard from '../components/home/card';
 export default function feed(){
   const router = useRouter();
   const [userSignedIn, setUserSignedIn] = useState(false);
@@ -140,7 +140,23 @@ return(
         <Masonry columns={masonryRow} spacing={2} >
     {posts.map(post => (
         
-        <MDBCard>
+    
+        <HomeCard post={post} loading = {loading}/>
+
+    ))}
+        
+       
+        </Masonry>
+        </ MDBContainer>
+    
+    </div>
+)
+
+}
+
+
+  
+  /*  <MDBCard>
         
           {loading ? (
           <>
@@ -170,17 +186,10 @@ return(
             </MDBCardText>
           </MDBCardBody>
         
-        </>)}
-        </MDBCard>
-    ))}
-        
-       
-        </Masonry>
-        </ MDBContainer>
-    
-    </div>
-)
+        </>
+        )} 
+        </MDBCard> 
+        */
 
-}
 
 
