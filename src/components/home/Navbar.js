@@ -107,7 +107,7 @@ export default function PrimarySearchAppBar(props) {
        const q = query(userRef, where("id", "==", auth.currentUser.uid));
        const querySnapshot = await getDocs(q);
         if(querySnapshot.empty){
-          router.push("/signup");
+          router.push("/editProfile");
         }else{
           console.log("user already exists");
          props.setUserSignedIn(true);

@@ -7,11 +7,11 @@ export default function profile(props) {
   const router = useRouter();
   const { user, userLoading, userError, logout } = useContext(UserContext);
   if (!userLoading && !user) {
-    router.push("/signup");
+    router.push("/");
   }
   function Content() {
     if (props.children) {
-      if (userLoading) {
+      if (userLoading || !user) {
         return <FullPageLoader />;
       } else {
         return props.children;
