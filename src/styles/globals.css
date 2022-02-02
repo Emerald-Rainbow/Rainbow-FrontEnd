@@ -175,7 +175,7 @@ cursor: pointer;
 }
 @media (max-width: 480px) {
   .carousel-item img{
-      height: 40vh !important;
+      height: 60vh !important;
       
   }
 }
@@ -198,6 +198,7 @@ cursor: pointer;
   outline: none;
 }
  */
+ @media (max-width: 600px) {
 
  .postspage img{
   
@@ -205,3 +206,5 @@ cursor: pointer;
       height: 300px !important;
    
  }
+
+}
