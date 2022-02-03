@@ -31,7 +31,7 @@ export default function feed(){
         const q = query(userRef, where("id", "==", auth.currentUser.uid));
         const querySnapshot = await getDocs(q);
         if(querySnapshot.empty){
-          router.push("/signup");
+          router.push("/editProfile");
         }
         else{
           setUserSignedIn(true);
