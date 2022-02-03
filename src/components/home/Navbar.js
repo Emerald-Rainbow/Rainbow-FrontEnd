@@ -17,15 +17,18 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useRouter} from 'next/router';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithRedirect, setPersistence, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { db, auth } from "../../../utils/firebase";
 import { collection, addDoc, query, where , getDocs} from "firebase/firestore"; 
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Drawer from './Drawer';
+import {useContext} from 'react';
+import UserContext from '@context/user/UserContext';
 
-const provider = new GoogleAuthProvider();
+import {signIn} from '@firebaseUtils/userControl';
+
 const theme = createTheme({
   //createTheme is a function that takes in a theme object and returns a ThemeProvider
   palette: {
@@ -86,48 +89,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function PrimarySearchAppBar(props) {
   const router = useRouter();
+  const {user, userLoading, userError, logout} = useContext(UserContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [userSignedIn, setUserSignedIn] = React.useState(false);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  
- function signInWithGoogle() { 
-   console.log("signInWithGoogle");
-   signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // ...
-      }).then(async ()=>{
-      try{
-       const userRef =  collection(db,"users");
-       const q = query(userRef, where("id", "==", auth.currentUser.uid));
-       const querySnapshot = await getDocs(q);
-        if(querySnapshot.empty){
-          router.push("/editProfile");
-        }else{
-          console.log("user already exists");
-         props.setUserSignedIn(true);
-        }
-      }catch(error){
-        console.log(error);
-      }
-        
-      }).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(error);
-        // ...
-      });
-     }
     
 
   const isMenuOpen = Boolean(anchorEl);
@@ -244,7 +210,7 @@ export default function PrimarySearchAppBar(props) {
           </Typography>
        
           <Box sx={{ flexGrow: 1 }} />
-          {!props.userSignedIn ?<Button variant="outlined" color ="inherit" size = "large" onClick={()=>{signInWithGoogle()}}>Sign In</Button> : 
+          {!props.userSignedIn ?<Button variant="outlined" color ="inherit" size = "large" onClick={signIn}>Sign In</Button> : 
           <div>
             
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

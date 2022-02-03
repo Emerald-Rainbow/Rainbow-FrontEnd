@@ -56,11 +56,19 @@ export default function editProfile(props) {
       phone:data.get('phone'),
       bio:data.get('bio'),
       nationality:data.get('nationality')
-    });
+    }); 
+  };
+
+useEffect(async ()=>{
+  if(Object.keys(userData).length != 0)
+  {
+    console.log("Saving" , userData);
     await setUserProfile(userData);
     setLoading(false);
-    router.push(`profile/${user.uid}`)
-  };
+    router.push(`/`);
+    // router.push(`profile/${user.uid}`);
+  }
+},[userData])
 
   return (
     <ProtectedRoute>
