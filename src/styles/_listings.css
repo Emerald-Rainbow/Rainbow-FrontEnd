@@ -1,21 +1,21 @@
-header {
+.housingPage  header {
     background: #021847;
     color: #fff;
     overflow: auto;
     padding: 20px 15px;
   }
-  header .logo {
+  .housingPage   header .logo {
     float: left;
     padding-left: 100px;
     text-align: right;
   }
-  header .logo .detailLogo {
+  .housingPage  header .logo .detailLogo {
     font-size: 1.7rem;
   }
-  header nav {
+  .housingPage  header nav {
     float: right;
   }
-  header nav a {
+  .housingPage header nav a {
     color: #fff;
     text-decoration: none;
     padding: 7px 20px;
@@ -23,10 +23,10 @@ header {
     font-weight: 300;
     font-size: 0.9rem;
   }
-  header nav a:hover {
+  .housingPage header nav a:hover {
     color: #639;
   }
-  header nav a.register-btn {
+  .housingPage   header nav a.register-btn {
     background: #639;
     padding: 7px 25px;
     text-align: center;
