@@ -26,6 +26,7 @@ export default function feed(){
         // https://firebase.google.com/docs/reference/js/firebase.User
           
         setUser(user);
+        setUserSignedIn(true);
         // const uid = user.uid;
         // const userRef =  collection(db,"users");
         // const q = query(userRef, where("id", "==", auth.currentUser.uid));
@@ -34,7 +35,6 @@ export default function feed(){
         //   // router.push("/signup");
         // }
         // else{
-        //   setUserSignedIn(true);
         // }
         // ...
       } else {
