@@ -157,13 +157,17 @@ cursor: pointer;
   background-color: rgb(250,250,250) !important;
 }
 .carousel-indicators button{
-  width:50px !important;
-  background-color: rgba(250, 250, 250, 0.7) !important;
+  width:40px !important;
+  height: 2px !important;
+ border-style: none !important;
+  border-radius: 20%;
+  background-color: rgba(250, 250, 250, 0.8) !important;
+  margin: 1rem !important;
 }
 
 .container-lg{
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .rainbow-text {
