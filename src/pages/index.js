@@ -26,6 +26,7 @@ export default function feed(){
         // https://firebase.google.com/docs/reference/js/firebase.User
           
         setUser(user);
+<<<<<<< HEAD
         const uid = user.uid;
         const userRef =  collection(db,"users");
         const q = query(userRef, where("id", "==", auth.currentUser.uid));
@@ -36,6 +37,18 @@ export default function feed(){
         else{
           setUserSignedIn(true);
         }
+=======
+        setUserSignedIn(true);
+        // const uid = user.uid;
+        // const userRef =  collection(db,"users");
+        // const q = query(userRef, where("id", "==", auth.currentUser.uid));
+        // const querySnapshot = await getDocs(q);
+        // if(querySnapshot.empty){
+        //   // router.push("/signup");
+        // }
+        // else{
+        // }
+>>>>>>> 4fbeac723033b215d5211617f4ae1eab6f081a7d
         // ...
       } else {
         // User is signed out
