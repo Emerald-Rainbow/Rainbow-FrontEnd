@@ -167,7 +167,7 @@ class App extends Component {
   
   render () {
     return (
-      <div>
+      <div className = "housingPage">
         <Header />
         <section id="content-area">
           <Filter change={this.change} populateAction={this.populateForms} globalState={this.state}/>

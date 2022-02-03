@@ -183,25 +183,32 @@ cursor: pointer;
   .loginmain {
       border-radius: 0px;
   }
-}/*
+}
 @import "_reset.css";
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
 @import "_grid.css";
 @import "_listings.css";
 @import "_content-area.css";
 
-*, html, body {
+.housingPage {
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
-}
-*:focus {
+}/*
+  *:focus {
   outline: none;
+}*/
+
+.postspage img{
+  max-width: 800px !important;
+  max-height: 800px !important;
 }
- */
+ 
  @media (max-width: 600px) {
 
  .postspage img{
-  
+      align-self: center;
+      left:0;
+      right:0;
       width: 300px !important;
       height: 300px !important;
    
