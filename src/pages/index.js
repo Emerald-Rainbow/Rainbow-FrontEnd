@@ -13,6 +13,9 @@ import Skeleton from '@mui/material/Skeleton';
 import Container from '@mui/material/Container';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import HomeCard from '../components/home/card';
+
+
+
 export default function feed(){
   const router = useRouter();
   const [userSignedIn, setUserSignedIn] = useState(false);
@@ -137,7 +140,7 @@ return(
     <Navbar userSignedIn={userSignedIn} setUserSignedIn = {setUserSignedIn} user = {currentUser}/>
     <Carousel/>
     <MDBContainer breakpoint="lg">
-        <Masonry columns={masonryRow} spacing={2} >
+        <Masonry columns={masonryRow} spacing={1} >
     {posts.map(post => (
         
     
@@ -147,7 +150,7 @@ return(
         
        
         </Masonry>
-        </ MDBContainer>
+        </MDBContainer>
     
     </div>
 )

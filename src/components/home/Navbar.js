@@ -87,6 +87,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
+
 export default function PrimarySearchAppBar(props) {
   const router = useRouter();
   const {user, userLoading, userError, logout} = useContext(UserContext);
@@ -94,7 +96,7 @@ export default function PrimarySearchAppBar(props) {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [userSignedIn, setUserSignedIn] = React.useState(false);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-    
+  const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -185,6 +187,7 @@ export default function PrimarySearchAppBar(props) {
   return (
     <ThemeProvider theme={theme}>
     <Box sx={{ flexGrow: 1 }}>
+ 
       <AppBar position="fixed" >
         <Toolbar>
           <IconButton
@@ -254,10 +257,12 @@ export default function PrimarySearchAppBar(props) {
             }
         </Toolbar>
       </AppBar>
+      <Offset />
       {renderMobileMenu}
       {renderMenu}
     </Box>
         <Drawer setDrawerOpen = {setDrawerOpen} drawerOpen = {drawerOpen} />
+       
     </ThemeProvider>
   );
 }

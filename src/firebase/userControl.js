@@ -1,4 +1,4 @@
-import {doc, setDoc, collection, getDoc, getFirestore, query} from 'firebase/firestore';
+import {doc, setDoc, collection, getDoc, getFirestore, query, where } from 'firebase/firestore';
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import Router  from 'next/router';
 
@@ -12,6 +12,12 @@ function getProfileInfoRef(uid,visibility) {
     return profileInfoRef;
 }
 
+async function getUserById(id){
+      const q =  doc(db,"users", id, "public", 'ProfileInfo');
+      const querySnapshot = await getDoc(q);
+       console.log(querySnapshot.data());
+       return querySnapshot.data();
+}
  
 async function setUserProfile(user) {
     try {
@@ -70,4 +76,4 @@ async function signIn() {
     });
 }
 
-export {setUserProfile, signIn}
+export {setUserProfile, signIn, getUserById}
