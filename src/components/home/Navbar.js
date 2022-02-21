@@ -138,11 +138,11 @@ export default function PrimarySearchAppBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={()=>{router.push(`/u/${user.uid}`)}}>Profile</MenuItem>
       <MenuItem onClick={
         ()=>{
           signOut(auth).then(() => {
-          props.setUserSignedIn(false);
+          
           handleMenuClose();
 })}
 }>Log out</MenuItem>
@@ -176,10 +176,10 @@ export default function PrimarySearchAppBar(props) {
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
-        >  {props.userSignedIn ? <Avatar alt={props.user.displayName} src={props.user.photoURL} /> : <AccountCircle /> }
+        >  {user ? <Avatar alt={user.displayName} src={user.photoURL} /> : <AccountCircle /> }
           
         </IconButton>
-        <p>{props?.user?.displayName}</p>
+        <p>{user?.displayName}</p>
       </MenuItem>
     </Menu>
   );
@@ -213,7 +213,7 @@ export default function PrimarySearchAppBar(props) {
           </Typography>
        
           <Box sx={{ flexGrow: 1 }} />
-          {!props.userSignedIn ?<Button variant="outlined" color ="inherit" size = "large" onClick={signIn}>Sign In</Button> : 
+          {!user ?<Button variant="outlined" color ="inherit" size = "large" onClick={signIn}>Sign In</Button> : 
           <div>
             
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -231,7 +231,7 @@ export default function PrimarySearchAppBar(props) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-             {props.userSignedIn ? <Avatar alt={props.user.displayName} src={props.user.photoURL} /> : <AccountCircle /> }
+             {user ? <Avatar alt={user.displayName} src={user.photoURL} /> : <AccountCircle /> }
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
