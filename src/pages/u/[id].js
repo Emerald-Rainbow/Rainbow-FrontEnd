@@ -5,7 +5,7 @@ import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, 
 import Container from '@mui/material/Container';
 import UserContext from '@context/user/UserContext';
 import {getUserById} from 'src/firebase/userControl';
-import Banner from '@components/Profile/banner';
+import Banner from '@components/Profile/Banner';
 import Navbar from "@components/home/Navbar";
 
 
