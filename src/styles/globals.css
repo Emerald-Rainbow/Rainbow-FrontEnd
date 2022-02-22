@@ -170,6 +170,10 @@ cursor: pointer;
   margin-bottom: 1em;
 }
 
+.profile-banner
+{
+  background: linear-gradient(to bottom, black 0%, black 50%, white 50%, white 100%);
+}
 .rainbow-text {
   background-image: linear-gradient(to left, violet, indigo, blue, green, rgb(228, 228, 62), orange, red);
   -webkit-background-clip: text;

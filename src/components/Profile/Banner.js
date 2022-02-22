@@ -27,26 +27,29 @@ export default function Banner({profile}) {
   return (
     <>
     <Box sx = {{flexGrow:1}}>
+   
       <Card style={{ backGround: 'rgb(255,255,255)' }}>
       <Box
+        className = "profile-banner"
         sx={{
           display: 'flex',
           justifyContent: 'center',
           p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
+         
+         
           borderRadius: 1,
+         
         }}
       >
          <Avatar
         alt={profile.Username}
         src="/static/images/avatar/1.jpg"
-        sx={{ width: 50, height: 50 }}
+        sx={{ width: 75, height: 75 }}
       />
       </Box>
       <FlexBox m = {0}>
            <Typography variant='h5'> 
-              {profile.Username}
+            {profile.Username}
               </Typography>
       </FlexBox>
      
