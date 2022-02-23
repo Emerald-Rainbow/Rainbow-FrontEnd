@@ -26,7 +26,8 @@ async function setUserProfile(user) {
         const privateRef = getProfileInfoRef(user.uid,'private');
         await setDoc(publicRef,{
             Username: user.username,
-            Bio: user.bio
+            Bio: user.bio,
+            ProfilePic: user.photoURL,
         });
         await setDoc(privateRef,{
             PhoneNumber: user.phone,

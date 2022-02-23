@@ -5,6 +5,40 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
+import { Button} from '@mui/material';
+
+
+
+const Controls = () => {
+  return (
+    <Box 
+    sx = {{ 
+      mt : 3,
+      mb : 3,
+      display : 'flex',
+      justifyContent : 'center'
+    }}
+  >
+      <Button 
+        variant = "contained"
+        color = "primary"
+        sx = {{
+          mr : 2
+        }}
+      >
+          FOLLOW
+      </Button>
+      <Button 
+        variant = "contained"
+        color = "error"
+       
+      >
+          add friend
+      </Button>
+  </Box>
+  )}
+
+
 
 const FlexBox =  (props) => {  
   return (
@@ -43,7 +77,7 @@ export default function Banner({profile}) {
       >
          <Avatar
         alt={profile.Username}
-        src="/static/images/avatar/1.jpg"
+        src={profile.ProfilePic}
         sx={{ width: 75, height: 75 }}
       />
       </Box>
@@ -59,7 +93,7 @@ export default function Banner({profile}) {
             </Typography>
        </FlexBox>    
       
-       
+      <Controls /> 
       </Card>
       </Box> 
     </>

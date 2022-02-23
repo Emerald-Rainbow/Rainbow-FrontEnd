@@ -2,11 +2,16 @@ import {useRouter} from 'next/router'
 import {useEffect, useState, useContext} from 'react'
 import axios from 'axios';
 import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol , MDBContainer} from 'mdb-react-ui-kit';
-import Container from '@mui/material/Container';
+import Container from '@mui/material/Container'
 import UserContext from '@context/user/UserContext';
 import {getUserById} from 'src/firebase/userControl';
 import Banner from '@components/Profile/Banner';
 import Navbar from "@components/home/Navbar";
+
+
+
+
+
 
 
 export default function ProfilePage() {

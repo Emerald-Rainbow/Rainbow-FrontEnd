@@ -55,7 +55,9 @@ export default function editProfile(props) {
       username:data.get('username'),
       phone:data.get('phone'),
       bio:data.get('bio'),
-      nationality:data.get('nationality')
+      nationality:data.get('nationality'),
+      photoURL : user.photoURL
+
     }); 
   };
 
