@@ -21,7 +21,7 @@ const adminConfig = `
     
 fs.open(pathAdmin,'r',function(err, fd){
     if (err) {
-      fs.writeFileSync(pathAdmin, JSON.stringify(adminConfig), function(err) {
+      fs.writeFileSync(pathAdmin, adminConfig, function(err) {
           if(err) {
               console.log(err);
           }
