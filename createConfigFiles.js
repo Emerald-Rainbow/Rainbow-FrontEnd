@@ -1,12 +1,15 @@
 const fs = require('fs')
 
 const pathAdmin = './utils/db/serviceAccountKey.json'
+
+const adminPrivateKey = process.env.private_key.replace(/\n/gm, "\n"); 
+
 const adminConfig = `
 {
     "type":"${process.env.type}",
     "project_id":"${process.env.project_id}",
     "private_key_id":"${process.env.private_key_id}",
-    "private_key":"${process.env.private_key}",
+    "private_key":"${adminPrivateKey}",
     "client_email":"${process.env.client_email}",
     "client_id":"${process.env.client_id}",
     "auth_uri":"${process.env.auth_uri}",
@@ -18,7 +21,7 @@ const adminConfig = `
     
 fs.open(pathAdmin,'r',function(err, fd){
     if (err) {
-      fs.writeFileSync(pathAdmin, JSON.stringify(JSON.stringify(adminConfig)), function(err) {
+      fs.writeFileSync(pathAdmin, JSON.stringify(adminConfig), function(err) {
           if(err) {
               console.log(err);
           }
