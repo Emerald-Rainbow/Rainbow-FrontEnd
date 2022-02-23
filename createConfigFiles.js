@@ -2,7 +2,7 @@ const fs = require('fs')
 
 const pathAdmin = './utils/db/serviceAccountKey.json'
 
-const adminPrivateKey = process.env.private_key.replace(/\n/gm, "\n"); 
+const adminPrivateKey = JSON.parse(process.env.private_key); 
 
 const adminConfig = `
 {
