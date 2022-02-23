@@ -5,7 +5,7 @@ const serviceAccount = require('./serviceAccountKey.json');
 if (!admin.apps.length) {
     try {
       admin.initializeApp({
-        credential: admin.credential.cert(JSON.parse(JSON.parse(serviceAccount.replace(/\n/gm, "\n")))),
+        credential: admin.credential.cert(JSON.parse(serviceAccount.replace(/\n/gm, "\n"))),
       });
     } catch (error) {
       console.log('Firebase admin initialization error', error.stack);
