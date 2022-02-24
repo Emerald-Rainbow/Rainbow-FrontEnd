@@ -32,7 +32,7 @@ return (
   <div className='profilePage'>
     <Navbar />
     <Container maxWidth = "lg" sx = {{mt : 2}}>
-      <Banner profile={profile} />
+      <Banner profile={profile} profileId = {id}/>
     </Container>
        
 

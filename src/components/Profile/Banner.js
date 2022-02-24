@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useContext, useState} from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -6,7 +7,28 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import { Button} from '@mui/material';
+import UserContext from '@context/user/UserContext';
+import {useRouter} from 'next/router';
 
+
+
+const UserControls = () => {
+  const router = useRouter();
+  return (
+    <Box 
+    sx = {{ 
+      mt : 3,
+      mb : 3,
+      display : 'flex',
+      justifyContent : 'center'
+    }}
+  >
+    <Button variant="contained" color="primary" onClick = {()=>{router.push('/editProfile')}}>
+      Edit Profile
+    </Button>
+    </Box>
+  )
+}
 
 
 const Controls = () => {
@@ -56,8 +78,9 @@ const FlexBox =  (props) => {
 )}
 
 
-export default function Banner({profile}) {
-   console.log("hello friend yo")
+export default function Banner({profile, profileId}) {
+  const {user} = useContext(UserContext);
+  
   return (
     <>
     <Box sx = {{flexGrow:1}}>
@@ -92,8 +115,7 @@ export default function Banner({profile}) {
               <em>  {profile.Bio} </em> 
             </Typography>
        </FlexBox>    
-      
-      <Controls /> 
+    {profileId === user?.uid ? <UserControls /> : <Controls />}
       </Card>
       </Box> 
     </>
