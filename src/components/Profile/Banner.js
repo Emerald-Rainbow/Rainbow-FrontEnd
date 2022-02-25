@@ -9,7 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import { Button} from '@mui/material';
 import UserContext from '@context/user/UserContext';
 import {useRouter} from 'next/router';
-
+import axios from 'axios';
 
 
 const UserControls = () => {
@@ -31,7 +31,17 @@ const UserControls = () => {
 }
 
 
-const Controls = () => {
+const Controls = ({profileData, followerId, profileId, followerData}) => {
+
+const followUser = () => {
+  axios.post('/api/follow', {
+    userData : {...profileData,id: profileId},
+    followerData : {...followerData, id: followerId}
+  }).then(res => {
+    console.log(res.data)
+  })
+}   
+
   return (
     <Box 
     sx = {{ 
@@ -47,6 +57,9 @@ const Controls = () => {
         sx = {{
           mr : 2
         }}
+       onClick = {()=>{
+           followUser();
+       }}
       >
           FOLLOW
       </Button>
@@ -79,7 +92,7 @@ const FlexBox =  (props) => {
 
 
 export default function Banner({profile, profileId}) {
-  const {user} = useContext(UserContext);
+  const {user, userData} = useContext(UserContext);
   
   return (
     <>
@@ -115,7 +128,7 @@ export default function Banner({profile, profileId}) {
               <em>  {profile.Bio} </em> 
             </Typography>
        </FlexBox>    
-    {profileId === user?.uid ? <UserControls /> : <Controls />}
+    {profileId === user?.uid ? <UserControls /> : <Controls profileData = {profile} profileId = {profileId} followerId = {user.uid} followerData ={userData} />}
       </Card>
       </Box> 
     </>
