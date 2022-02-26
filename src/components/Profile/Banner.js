@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext, useState} from 'react'
+import {useContext, useState, useEffect} from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,6 +10,46 @@ import { Button} from '@mui/material';
 import UserContext from '@context/user/UserContext';
 import {useRouter} from 'next/router';
 import axios from 'axios';
+import { getFollowing } from '@firebaseUtils/userRealtionsControl';
+import DoneIcon from '@mui/icons-material/Done';
+
+
+const AnonymousUserControls = () => {
+    return(
+      <Box 
+    sx = {{ 
+      mt : 3,
+      mb : 3,
+      display : 'flex',
+      justifyContent : 'center'
+    }}
+  >   
+  
+      <Button 
+        variant = "contained"
+        color = "primary"
+        sx = {{
+          mr : 2
+        }}
+       onClick = {()=>{
+           alert('You need to login to follow this user');
+       }}
+      >
+          FOLLOW
+      </Button>
+    
+      <Button 
+        variant = "contained"
+        color = "error"
+       onClick = {()=>{
+            alert('You need to login to be friends with this user');
+        }}  
+      >
+          add friend
+      </Button>
+  </Box>
+    )
+    }
 
 
 const UserControls = () => {
@@ -32,15 +72,33 @@ const UserControls = () => {
 
 
 const Controls = ({profileData, followerId, profileId, followerData}) => {
+const [isFollowing, setIsFollowing] = useState(false);
+
+useEffect(()=>{
+  if(followerId){
+    getFollowing(followerId, profileId).then(res=>{
+      setIsFollowing(res);
+    })
+  }
+},[followerId, profileId]);
 
 const followUser = () => {
+  if(!followerId)alert()
   axios.post('/api/follow', {
     userData : {...profileData,id: profileId},
     followerData : {...followerData, id: followerId}
   }).then(res => {
-    console.log(res.data)
+    console.log(res.data);
+    setIsFollowing(res.data.success);
   })
 }   
+
+const unFollowUser = () => {
+  axios.delete(`/api/follow?userId=${profileId}&followerId=${followerId}`).then(res => {
+    console.log(res.data);
+    setIsFollowing(!res.data.success);
+  })
+}
 
   return (
     <Box 
@@ -50,7 +108,23 @@ const followUser = () => {
       display : 'flex',
       justifyContent : 'center'
     }}
-  >
+  >   
+    { isFollowing ?
+    
+    <Button 
+        variant = "contained"
+        color = "error"
+        sx = {{
+          mr : 2
+        }}
+        onClick = {()=>{
+          unFollowUser();
+      }}
+      >
+        UNFOLLOW
+      </Button>
+    
+    :
       <Button 
         variant = "contained"
         color = "primary"
@@ -63,6 +137,7 @@ const followUser = () => {
       >
           FOLLOW
       </Button>
+    }
       <Button 
         variant = "contained"
         color = "error"
@@ -128,7 +203,7 @@ export default function Banner({profile, profileId}) {
               <em>  {profile.Bio} </em> 
             </Typography>
        </FlexBox>    
-    {profileId === user?.uid ? <UserControls /> : <Controls profileData = {profile} profileId = {profileId} followerId = {user.uid} followerData ={userData} />}
+    {profileId === (user?user.uid:'hehe') ? <UserControls /> : user? <Controls profileData = {profile} profileId = {profileId} followerId = {user.uid} followerData ={userData} />: <AnonymousUserControls />}
       </Card>
       </Box> 
     </>
