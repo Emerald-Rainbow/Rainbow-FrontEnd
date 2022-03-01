@@ -74,7 +74,7 @@ export default function Album() {
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained">Back to home</Button>
+              <Button variant="contained" href="https://rainbow-emerald.netlify.app/">Back to home</Button>
               <Button variant="outlined">View your bookings</Button>
             </Stack>
           </Container>
