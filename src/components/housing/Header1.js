@@ -14,13 +14,10 @@ export default class Header extends Component {
   render () {
     return (
       <header>
-      <div className="logo"><span className="detailLogo">realties.ca</span><br/>real estate</div>
+      <div className="logo"><span className="detailLogo">Rainbow Housing</span><br/>The Premium Housing</div>
       
       <nav>
-        <a href="#1">Create ads</a>
-        <a href="#1">About us</a>
-        <a href="#1">Log in</a>
-        <a href="#1" className="register-btn">Register</a>
+        <a href="https://rainbow-emerald.netlify.app">Home</a>
       </nav>
       </header>
     )
