@@ -88,7 +88,7 @@ return(
     {posts.map(post => (
         
     
-        <HomeCard post={post} loading = {loading}/>
+        <HomeCard post={post} loading = {loading} authorIsUser = {0} />
 
     ))}
         

@@ -115,7 +115,7 @@ export default function HomeCard(props) {
             {props.post.title}
           </Typography>
           <div style={{overflow: "hidden", textOverflow: "ellipsis", maxHeight: "150px"}}> 
-          <Typography nowrap variant="body2" color="text.secondary"  gutterBottom =  {true}>
+          <Typography  variant="body2" color="text.secondary"  gutterBottom =  {true}>
           <div dangerouslySetInnerHTML={{__html: props.post.content.replace(/<img[^>]*>/g,"")}} />
           </Typography>
           </div>
@@ -132,19 +132,18 @@ export default function HomeCard(props) {
           borderRadius: 1,
           flexGrow : 1,
         }}
-      >  
+      >  { props.authorIsUser === 0 && (
       <Stack direction = "row" spacing = {0.5}>
       <IconButton aria-label="avatar">
       <Avatar alt={props.post.author} src={props.post.authorPic} onClick = { () => {router.push(`/u/${props.post.userId}`)}} />
       </IconButton>
       <IconButton>
-      <Typography variant="body2" color="textSecondary" component="p" >
+      <Typography variant="body2" color="textSecondary" component="p" onClick = { () => {router.push(`/u/${props.post.userId}`)}} >
         {props.post.author}
       </Typography>
       </IconButton>
-      
-      </Stack>
-    
+      </Stack>)
+}
         <Stack direction = "row" spacing = {0.5}>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
