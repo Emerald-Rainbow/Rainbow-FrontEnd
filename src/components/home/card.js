@@ -16,6 +16,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Stack } from '@mui/material';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 export default function HomeCard(props) {
     const router = useRouter();
@@ -146,7 +147,7 @@ export default function HomeCard(props) {
 }
         <Stack direction = "row" spacing = {0.5}>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <FavoriteBorderIcon />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
