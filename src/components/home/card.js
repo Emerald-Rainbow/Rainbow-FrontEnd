@@ -21,7 +21,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 export default function HomeCard(props) {
     const router = useRouter();
     const [image, setImage] = React.useState(0);
-
+    const [postLiked, setPostLiked] = React.useState(false);
     function extractImage(string) {
         const imgRex = /<img.*?src="(.*?)"[^>]*>/g;
         const images = [];
@@ -147,7 +147,10 @@ export default function HomeCard(props) {
 }
         <Stack direction = "row" spacing = {0.5}>
         <IconButton aria-label="add to favorites">
-          <FavoriteBorderIcon />
+        {!postLiked ?
+          <FavoriteBorderIcon onClick = {() => { setPostLiked(true) }} />
+          : <FavoriteIcon color = "error" onClick = {() => { setPostLiked(false) }} />
+        }
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
