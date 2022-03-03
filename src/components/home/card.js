@@ -7,15 +7,15 @@ import { CardActionArea } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CardActions from '@mui/material/CardActions';
-
+import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Skeleton from '@mui/material/Skeleton';
 import {useRouter} from 'next/router';
-
+import Box from '@mui/material/Box';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+import { Stack } from '@mui/material';
 
 export default function HomeCard(props) {
     const router = useRouter();
@@ -82,6 +82,8 @@ export default function HomeCard(props) {
      React.useEffect(() => {
       setImage(extractImage(props.post.content));
     }, [props.post.content]);
+
+    console.log(props.post.author);
   return (
       <>
       {props.loading ? (
@@ -120,13 +122,38 @@ export default function HomeCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions disableSpacing>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          p: 1,
+          m: 1,
+          bgcolor: 'background.paper',
+          borderRadius: 1,
+          flexGrow : 1,
+        }}
+      >  
+      <Stack direction = "row" spacing = {0.5}>
+      <IconButton aria-label="avatar">
+      <Avatar alt={props.post.author} src={props.post.authorPic} onClick = { () => {router.push(`/u/${props.post.userId}`)}} />
+      </IconButton>
+      <IconButton>
+      <Typography variant="body2" color="textSecondary" component="p" >
+        {props.post.author}
+      </Typography>
+      </IconButton>
+      
+      </Stack>
+    
+        <Stack direction = "row" spacing = {0.5}>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-       
+        </Stack>
+       </Box>
        
       </CardActions> 
       

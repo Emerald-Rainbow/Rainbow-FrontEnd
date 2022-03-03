@@ -16,7 +16,9 @@ export default async (req, res) => {
                     doc.data().title,
                     doc.data().content,
                     doc.data().createdAt,
-                    doc.data().likes
+                    doc.data().likes,
+                    doc.data().author,
+                    doc.data().authorPic
                 );
                 blogsArray.push(blog);
             });

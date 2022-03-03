@@ -187,20 +187,20 @@ export default function Banner({profile, profileId}) {
         }}
       >
          <Avatar
-        alt={profile.Username}
-        src={profile.ProfilePic}
+        alt={profile?.Username}
+        src={profile?.ProfilePic}
         sx={{ width: 75, height: 75 }}
       />
       </Box>
       <FlexBox m = {0}>
            <Typography variant='h5'> 
-            {profile.Username}
+            {profile?.Username}
               </Typography>
       </FlexBox>
      
        <FlexBox m = {1}>      
             <Typography variant='body2' >
-              <em>  {profile.Bio} </em> 
+              <em>  {profile?.Bio} </em> 
             </Typography>
        </FlexBox>    
     {profileId === (user?user.uid:'hehe') ? <UserControls /> : user? <Controls profileData = {profile} profileId = {profileId} followerId = {user.uid} followerData ={userData} />: <AnonymousUserControls />}

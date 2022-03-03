@@ -58,14 +58,16 @@ export default function addBlog() {
       title     : title,
       content   : editorHTML,
       createdAt : createdAt,
-      likes    : 0
+      likes    : 0,
+      author : user.displayName,
+      authorPic : user.photoURL
     };
     // .editor.getContents().ops
 
     console.log(JSON.stringify(data));
     console.log();
 
-    const res = await axios.post('/blog', JSON.stringify(data), {
+    const res = await axios.post('/api/blog', JSON.stringify(data), {
         headers: {
         // Overwrite Axios's automatically set Content-Type
         'Content-Type': 'application/json'

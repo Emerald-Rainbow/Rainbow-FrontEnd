@@ -13,7 +13,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Container from '@mui/material/Container';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import HomeCard from '../components/home/card';
-
+import Select from '@components/home/select';
 
 
 export default function feed(){
@@ -47,64 +47,6 @@ export default function feed(){
     });
     
   
-
-  function extractImage(string) {
-    const imgRex = /<img.*?src="(.*?)"[^>]*>/g;
-    const images = [];
-      let img;
-      while ((img = imgRex.exec(string))) {
-         images.push(img[1]);
-      }
-      console.log(images);
-    return images[0]?images[0]:"https://www.kalfound.org/Portals/0/Uploads/Images/Misc%20Graphics/LGBTQ_web_banner.png";
-  }
-  
-
-  function htmlToLength(html, length) {
-    const trimmedNode = htmlToNodeWithLength(html, length);
-  
-    const container = document.createElement("div");
-    container.appendChild(trimmedNode);
-    return container.innerHTML;
-  }
-  
-  function htmlToNodeWithLength(html, length) {
-    // Only for measurement. Never added to DOM.
-    const container = document.createElement("div");
-    container.innerHTML = html;
-  
-    const fullRange = document.createRange();
-    fullRange.setStart(container, 0);
-    fullRange.setEnd(container, 1);
-  
-    const range = findRangeWithLength(fullRange, length);
-    return range.cloneContents();
-  }
-  
-  function findRangeWithLength(range, length) {
-    if (rangeLength(range) < length) return range;
-  
-    // Find the childNode with at least length content.
-    for (const childNode of range.endContainer.childNodes) {
-      range.setEnd(childNode, lastEndOffset(childNode));
-      if (rangeLength(range) >= length) {
-        return findRangeWithLength(range, length);
-      }
-    }
-  
-    // There are no child nodes long enough. It's a text node.
-    const diff = length - rangeLength(range) + range.endOffset;
-    range.setEnd(range.endContainer, diff);
-    return range;
-  }
-  
-  function lastEndOffset(node) {
-    return node.childNodes.length || node.textContent.length;
-  }
-  
-  function rangeLength(range) {
-    return range.toString().length;
-  }
     const [posts,setPosts]= useState([0,0,0,0,0,0]);
     const [loading,setLoading]= useState(true);
     async function getPosts(){
@@ -140,7 +82,9 @@ return(
     <Navbar userSignedIn={userSignedIn} setUserSignedIn = {setUserSignedIn} user = {currentUser}/>
     <Carousel/>
     <MDBContainer breakpoint="lg">
-        <Masonry columns={masonryRow} spacing={1} >
+    
+
+        <Masonry columns={masonryRow} spacing={1} sx ={{ml : 0.1, mt : 1}}  >
     {posts.map(post => (
         
     
