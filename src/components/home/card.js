@@ -87,7 +87,7 @@ export default function HomeCard(props) {
   return (
       <>
       {props.loading ? (
-        <Card>
+        <Card >
              <Skeleton variant="rectangular" height={140} />
              <CardContent >
              <Typography ><Skeleton /></Typography>
@@ -97,7 +97,7 @@ export default function HomeCard(props) {
         </Card>
       ):
 
-    (<Card >
+    (<Card elevation={10} >
         
       <CardActionArea
        onClick={()=>{
