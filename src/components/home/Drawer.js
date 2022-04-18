@@ -78,7 +78,7 @@ const Appdrawer = (props) => {
               <ListItemText primary= "Create Post" />
             </ListItem>
 
-            <ListItem button key="Consultation" sx = {{color: drawerElementColor[2]}} onClick= {()=>router.push('/booking')}>
+            <ListItem button key="Consultation" sx = {{color: drawerElementColor[2]}} onClick= {()=>router.push('/consultation')}>
               <ListItemIcon sx = {{color: drawerElementColor[2]}}>
                 <ConfirmationNumberIcon />
               </ListItemIcon>

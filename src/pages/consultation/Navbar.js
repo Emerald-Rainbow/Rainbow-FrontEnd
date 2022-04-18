@@ -208,9 +208,9 @@ export default function PrimarySearchAppBar(props) {
             sx={{ display: {  sm: 'block' } }}
           >
            
-           <div className="rainbow-text"><strong>RAINBOW CONSULTATION</strong></div>
+           <div className="rainbow-text"><strong>RAINBOW</strong></div>
            
-          </Typography>
+          </Typography> 
        
           <Box sx={{ flexGrow: 1 }} />
           {!user ?<Button variant="outlined" color ="inherit" size = "large" onClick={signIn}>Sign In</Button> : 
@@ -232,13 +232,7 @@ export default function PrimarySearchAppBar(props) {
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-          <IconButton
-           size="large" 
-           aria-label="show 4 new mails" 
-           color="inherit"
-           onClick={()=>{router.push("/addBlog")}}> 
-            <AddCircleIcon />
-              </IconButton>
+          <Button variant="text" color ="inherit" size = "large" >BOOKINGS</Button>
             <IconButton
               size="large"
               aria-label="show more"

@@ -1,10 +1,10 @@
 import React, { Component} from 'react'
 import ReactDOM from 'react-dom'
-import Header from '../../components/housing/Header1'
 import Filter from '../../components/housing/Filter'
 import Listings from '../../components/housing/Listings'
 import listingsData from '../../components/housing/Data/ListingsData'
 //import './styles/main.css'; 
+import Navbar from './Navbar'
 
 
 class App extends Component {
@@ -167,8 +167,8 @@ class App extends Component {
   
   render () {
     return (
-      <div className = "housingPage">
-        <Header />
+      <div>
+        <Navbar/>
         <section id="content-area">
           <Filter change={this.change} populateAction={this.populateForms} globalState={this.state}/>
           <Listings listingsData={this.state.filterData} change={this.change} globalState={this.state} changeView={this.changeView}/>
