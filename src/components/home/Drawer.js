@@ -78,11 +78,11 @@ const Appdrawer = (props) => {
               <ListItemText primary= "Create Post" />
             </ListItem>
 
-            <ListItem button key="Book Tickets" sx = {{color: drawerElementColor[2]}} onClick= {()=>router.push('/booking')}>
+            <ListItem button key="Consultation" sx = {{color: drawerElementColor[2]}} onClick= {()=>router.push('/booking')}>
               <ListItemIcon sx = {{color: drawerElementColor[2]}}>
                 <ConfirmationNumberIcon />
               </ListItemIcon>
-              <ListItemText primary= "Book Tickets" />
+              <ListItemText primary= "Consultation" />
             </ListItem>
 
             <ListItem button key="Housing" sx = {{color: drawerElementColor[3]}} onClick= {()=>router.push('/housing')}>
