@@ -9,7 +9,7 @@ import Styles from '../components/addBlog.module.css';
 import Spinner from 'react-bootstrap/Spinner';
 import { useRouter } from 'next/router';
 import ProtectedRoute from '@components/ProtectedRoute/ProtectedRoute';
-
+import Navbar from '../components/home/Navbar'
 
 function BlogTitle(props){
   return(
@@ -91,6 +91,7 @@ export default function addBlog() {
   return (
     <>
       <ProtectedRoute>
+        <Navbar/>
       <div
         className={Styles.backDrop}
         style={{
@@ -100,6 +101,7 @@ export default function addBlog() {
           width: "90%",
           height: "80vh",
           margin: "auto",
+          marginTop:'-25px',
           // display: "flex",
           flexDirection: "column",
           transform: 'translateY(13%)',

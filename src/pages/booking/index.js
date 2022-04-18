@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import Navbar from './Navbar'
 
 function Copyright() {
   return (
@@ -38,47 +38,8 @@ export default function Album() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <startIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Consultation/Booking
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <Navbar/>
       <main>
-        {/* Hero unit */}
-        <Box
-          sx={{
-            bgcolor: 'Gold',
-            pt: 8,
-            pb: 6,
-          }}
-        >
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
-            >
-              Consultation 
-            </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" paragraph>
-            The list of therapists that you can avail support from are listed below:
-            </Typography>
-            <Stack
-              sx={{ pt: 8 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-            >
-              <Button variant="contained" href="https://rainbow-emerald.netlify.app/">Back to home</Button>
-              <Button variant="outlined">View your bookings</Button>
-            </Stack>
-          </Container>
-        </Box>
         <Container sx={{ py: 1 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={5}>
