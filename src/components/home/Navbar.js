@@ -213,10 +213,12 @@ export default function PrimarySearchAppBar(props) {
           </Typography>
        
           <Box sx={{ flexGrow: 1 }} />
+           <Button variant="text" color ="inherit" size = "large" onClick={()=>{router.push("/#posts")}}>POSTS</Button>
           {!user ?<Button variant="outlined" color ="inherit" size = "large" onClick={signIn}>Sign In</Button> : 
           <div>
             
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            
           <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={()=>{router.push("/addBlog")}}>
             <AddCircleIcon />
               </IconButton>
@@ -233,6 +235,7 @@ export default function PrimarySearchAppBar(props) {
             >
              {user ? <Avatar alt={user.displayName} src={user.photoURL} /> : <AccountCircle /> }
             </IconButton>
+             
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
           <IconButton
@@ -252,6 +255,7 @@ export default function PrimarySearchAppBar(props) {
             >
               <MoreIcon />
             </IconButton>
+          
           </Box>
           </div>
             }

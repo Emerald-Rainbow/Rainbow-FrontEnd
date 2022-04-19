@@ -29,6 +29,15 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   }));
+  const DrawerHeader1 = styled('div')(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    fontSize:'20px',
+    padding: theme.spacing(0, 4.5),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+  }));
+  
   
 
 const Appdrawer = (props) => {
@@ -57,10 +66,14 @@ const Appdrawer = (props) => {
         open={props.drawerOpen}
       >
         <DrawerHeader>
+          <DrawerHeader1>
+          <div className="rainbow-text" style={{alignContent:"center"}}><strong>RAINBOW</strong></div>
+        </DrawerHeader1>
           <IconButton onClick={()=> {props.setDrawerOpen(false)}}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
+        
         <Divider />
         <List>
           
