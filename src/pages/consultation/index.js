@@ -18,6 +18,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navbar from '../../components/housing/Navbar'
 import { Form, Modal, Table } from 'react-bootstrap';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import ProtectedRoute from '@components/ProtectedRoute/ProtectedRoute';
 
 function Copyright() {
   return (
@@ -50,6 +52,7 @@ const [show, setShow] =useState(false);
   const handleShow1 = () => setShow1(true);
 
   return (
+    <ProtectedRoute>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar/>
@@ -90,7 +93,7 @@ const [show, setShow] =useState(false);
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
               <Form.Label><b>NAME</b></Form.Label>
               <Form.Control
                 type="text"
@@ -98,7 +101,7 @@ const [show, setShow] =useState(false);
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput2">
               <Form.Label><b>EMAIL</b></Form.Label>
               <Form.Control
                 type="email"
@@ -106,7 +109,7 @@ const [show, setShow] =useState(false);
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput3">
               <Form.Label><b>PHONE NO:</b></Form.Label>
               <Form.Control
                 type="number"
@@ -115,7 +118,7 @@ const [show, setShow] =useState(false);
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput3">
               <Form.Label><b>TREATMENT CODE</b> (<Button variant="text" onClick={handleShow1}>Click Here</Button>)</Form.Label>
               <Form.Control
                 type="number"
@@ -137,14 +140,14 @@ const [show, setShow] =useState(false);
         </Modal.Footer>
       </Modal>
         <Button size="small" onClick={handleShow1}>RATES</Button>
-         <Modal show={show1} onHide={handleClose1} size="lg"centered>
+         <Modal show={show1} onHide={handleClose1} size="small"centered>
         <Modal.Header closeButton>
           <Modal.Title>RATES</Modal.Title>
         </Modal.Header>
         <Table striped bordered hover>
   <thead>
     <tr>
-      <th>TREATMENT CODE</th>
+      <th>CODE</th>
       <th>TREATMENT</th>
         <th>RATES (in Rs.)</th>
 
@@ -181,6 +184,6 @@ const [show, setShow] =useState(false);
           </Grid>
         </Container>
       </main>
-    </ThemeProvider>
+    </ThemeProvider></ProtectedRoute>
   );
 }

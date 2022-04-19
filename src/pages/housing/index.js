@@ -5,6 +5,8 @@ import Listings from '../../components/housing/Listings'
 import listingsData from '../../components/housing/Data/ListingsData'
 //import './styles/main.css'; 
 import Navbar from '../../components/housing/Navbar'
+import ProtectedRoute from '@components/ProtectedRoute/ProtectedRoute';
+
 
 
 class App extends Component {
