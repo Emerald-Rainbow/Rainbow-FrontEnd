@@ -16,6 +16,8 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navbar from '../../components/housing/Navbar'
+import { Form, Modal, Table } from 'react-bootstrap';
+import { useState } from 'react';
 
 function Copyright() {
   return (
@@ -30,11 +32,23 @@ function Copyright() {
   );
 }
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]; 
+
 
 const theme = createTheme();
 
 export default function Album() {
+
+
+const [show, setShow] =useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [show1, setShow1] =useState(false);
+
+  const handleClose1 = () => setShow1(false);
+  const handleShow1 = () => setShow1(true);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -69,8 +83,97 @@ export default function Album() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">BOOK</Button>
-        <Button size="small">RATES</Button>
+        <Button size="small" onClick={handleShow}>BOOK</Button>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>BOOK APPOINTMENT</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label><b>NAME</b></Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="John Doe"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+              <Form.Label><b>EMAIL</b></Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="name@example.com"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+              <Form.Label><b>PHONE NO:</b></Form.Label>
+              <Form.Control
+                type="number"
+                onScroll={false}
+                placeholder="1234545454"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+              <Form.Label><b>TREATMENT CODE</b> (<Button variant="text" onClick={handleShow1}>Click Here</Button>)</Form.Label>
+              <Form.Control
+                type="number"
+                onScroll={false}
+                placeholder="1"
+                autoFocus
+              />
+            </Form.Group>
+            
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="contained" onClick={handleClose}>
+            PAY AND BOOK
+          </Button>
+        </Modal.Footer>
+      </Modal>
+        <Button size="small" onClick={handleShow1}>RATES</Button>
+         <Modal show={show1} onHide={handleClose1} size="lg"centered>
+        <Modal.Header closeButton>
+          <Modal.Title>RATES</Modal.Title>
+        </Modal.Header>
+        <Table striped bordered hover>
+  <thead>
+    <tr>
+      <th>TREATMENT CODE</th>
+      <th>TREATMENT</th>
+        <th>RATES (in Rs.)</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>1</b></td>
+      <td><b>Test</b></td>
+      <td><b>5000/-</b></td>
+    </tr>
+    <tr>
+      <td><b>2</b></td>
+      <td><b>Test</b></td>
+      <td><b>10000/-</b></td>
+    </tr>
+    <tr>
+      <td><b>3</b></td>
+      <td><b>Test</b></td>
+      <td><b>15000/-</b></td>
+    </tr>
+  </tbody>
+</Table>
+        <Modal.Footer>
+          <Button variant="contained" onClick={handleClose1}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
       </CardActions>
     </Card>
               </Grid>
