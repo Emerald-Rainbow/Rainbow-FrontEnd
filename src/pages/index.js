@@ -81,6 +81,9 @@ return(
     <div className = "feed-page-container">
     <Navbar userSignedIn={userSignedIn} setUserSignedIn = {setUserSignedIn} user = {currentUser}/>
     <Carousel/>
+    <section id="posts">
+    <br/>
+    <br/>
     <MDBContainer breakpoint="lg">
     
 
@@ -95,7 +98,7 @@ return(
        
         </Masonry>
         </MDBContainer>
-    
+    </section>
     </div>
 )
 
