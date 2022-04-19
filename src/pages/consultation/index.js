@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Navbar from './Navbar'
+import Navbar from '../../components/housing/Navbar'
 
 function Copyright() {
   return (
@@ -40,45 +40,38 @@ export default function Album() {
       <CssBaseline />
       <Navbar/>
       <main>
-        <Container sx={{ py: 1 }} maxWidth="md">
+        <Container sx={{ py: 2 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={5}>
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      // 16:9
-                      pt: '55.25%',
-                    }}
-                    image="https://miro.medium.com/max/3150/1*5RB0lX1V5e_QqEgQx1jMNQ@2x.jpeg"
-                    alt="random"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h1">
-                     Dr.Abhishek Kurian
-                    </Typography>
-                    <Typography>
-                      
-                      Chief mental health consultant
+                <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="100%"
+        image="https://cdn.pixabay.com/photo/2013/07/13/10/07/man-156584_960_720.png"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+        Dr.Abhishek Kurian
+        </Typography>
+        <Typography>
+        Chief mental health consultant
+                     <br/>
                      
-                     
-                      Hopewell Hospital
-                     
-                     
-                      Counselling Psychology
-                      Premium
-
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">Book</Button>
-                    <Button size="small">Rate</Button>
-                  </CardActions>
-                </Card>
+                     Hopewell Hospital
+                    
+                    <br/>
+                     Counselling Psychology
+                     <br/><b>Premium</b>
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">BOOK</Button>
+        <Button size="small">RATES</Button>
+      </CardActions>
+    </Card>
               </Grid>
             ))}
           </Grid>

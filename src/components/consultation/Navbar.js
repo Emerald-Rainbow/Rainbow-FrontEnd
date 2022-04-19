@@ -23,7 +23,7 @@ import { collection, addDoc, query, where , getDocs} from "firebase/firestore";
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import Drawer from '../../components/home/Drawer';
+import Drawer from '../home/Drawer';
 import {useContext} from 'react';
 import UserContext from '@context/user/UserContext';
 

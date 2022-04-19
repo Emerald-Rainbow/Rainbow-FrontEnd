@@ -4,7 +4,7 @@ import Filter from '../../components/housing/Filter'
 import Listings from '../../components/housing/Listings'
 import listingsData from '../../components/housing/Data/ListingsData'
 //import './styles/main.css'; 
-import Navbar from './Navbar'
+import Navbar from '../../components/housing/Navbar'
 
 
 class App extends Component {
