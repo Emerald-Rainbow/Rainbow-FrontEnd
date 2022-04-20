@@ -50,7 +50,53 @@ const [show, setShow] =useState(false);
 
   const handleClose1 = () => setShow1(false);
   const handleShow1 = () => setShow1(true);
+  const initializeRazorpay = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
 
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
+  const makePayment = async () => {
+    const res = await initializeRazorpay();
+
+    if (!res) {
+      alert("Razorpay SDK Failed to load");
+      return;
+    }
+
+    // Make API call to the serverless API
+    const data = await fetch("/api/razorpay", { method: "POST" }).then((t) =>
+      t.json()
+    );
+    console.log(data);
+    var options = {
+      key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
+      name: "RAINBOW",
+      currency: data.currency,
+      amount: data.amount,
+      order_id: data.id,
+      description: "Consultation Fee",
+      handler: function (response) {
+        // Validate payment at server - using webhooks is a better idea.
+        alert("Payment ID : "+response.razorpay_payment_id);
+        alert("Order ID : "+response.razorpay_order_id);
+        handleClose();
+      },
+      
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
   return (
     <ProtectedRoute>
     <ThemeProvider theme={theme}>
@@ -125,7 +171,13 @@ const [show, setShow] =useState(false);
                 onScroll={false}
                 placeholder="1"
                 autoFocus
+                
               />
+            </Form.Group>
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput3">
+              <Form.Label><b>AMOUNT</b></Form.Label>
+              <Form.Control/>
+
             </Form.Group>
             
           </Form>
@@ -134,7 +186,7 @@ const [show, setShow] =useState(false);
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="contained" onClick={handleClose}>
+          <Button variant="contained" onClick={makePayment}>
             PAY AND BOOK
           </Button>
         </Modal.Footer>
