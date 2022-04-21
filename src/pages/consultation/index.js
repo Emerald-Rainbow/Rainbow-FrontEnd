@@ -20,6 +20,7 @@ import { Form, Modal, Table } from 'react-bootstrap';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import ProtectedRoute from '@components/ProtectedRoute/ProtectedRoute';
+import { TextField } from '@mui/material';
 
 function Copyright() {
   return (
@@ -104,7 +105,7 @@ const [show, setShow] =useState(false);
       <Navbar/>
       <main>
         
-        <Container sx={{ py: 2 }} maxWidth="md">
+        <Container sx={{ py: 2 }} maxWidth="md" >
           {/* End hero unit */}
           <Grid container spacing={5}>
             {cards.map((card) => (
@@ -133,50 +134,72 @@ const [show, setShow] =useState(false);
       </CardContent>
       <CardActions>
         <Button size="small" onClick={handleShow}>BOOK</Button>
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal show={show} onHide={handleClose} size="md" style={{ marginTop:"45px"}}centered>
         <Modal.Header closeButton>
           <Modal.Title>BOOK APPOINTMENT</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
-              <Form.Label><b>NAME</b></Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="John Doe"
-                autoFocus
-              />
+              <TextField
+                    autoComplete="given-name"
+                    name="username"
+                    required
+                    fullWidth
+                    id="username"
+                    label="NAME"
+                    autoFocus
+                    size='small'
+                  />
             </Form.Group>
+            <br/>
             <Form.Group className="mb-1" controlId="exampleForm.ControlInput2">
-              <Form.Label><b>EMAIL</b></Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                autoFocus
-              />
+              <TextField
+                    autoComplete="email"
+                    name="email"
+                    required
+                    fullWidth
+                    id="email"
+                    label="EMAIL"
+                    autoFocus
+                    size='small'
+                  />
+            </Form.Group>
+            <br/>
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput3">
+              <TextField
+                    required
+                    fullWidth
+                    id="phone"
+                    label="PHONE NO:"
+                    name="phone"
+                    autoComplete="phone number"
+                    size='small'
+                  />
+            </Form.Group>
+            <br/>
+            <Form.Group className="mb-1" controlId="exampleForm.ControlInput3">
+              <TextField
+                    required
+                    fullWidth
+                    id="code"
+                    label="TREATMENT CODE"
+                    name="code"
+                    size='small'
+                    autoComplete="code"
+                  /><Button variant="text" onClick={handleShow1}>Click Here</Button>
             </Form.Group>
             <Form.Group className="mb-1" controlId="exampleForm.ControlInput3">
-              <Form.Label><b>PHONE NO:</b></Form.Label>
-              <Form.Control
-                type="number"
-                onScroll={false}
-                placeholder="1234545454"
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-1" controlId="exampleForm.ControlInput3">
-              <Form.Label><b>TREATMENT CODE</b> (<Button variant="text" onClick={handleShow1}>Click Here</Button>)</Form.Label>
-              <Form.Control
-                type="number"
-                onScroll={false}
-                placeholder="1"
-                autoFocus
-                
-              />
-            </Form.Group>
-            <Form.Group className="mb-1" controlId="exampleForm.ControlInput3">
-              <Form.Label><b>AMOUNT</b></Form.Label>
-              <Form.Control/>
+              <TextField
+                    disabled
+                    fullWidth
+                    id="amount"
+                    label="AMOUNT"
+                    name="amount"
+                    size='small'
+                    value='1000'
+                    autoComplete="amount"
+                  />
 
             </Form.Group>
             
@@ -209,17 +232,17 @@ const [show, setShow] =useState(false);
     <tr>
       <td><b>1</b></td>
       <td><b>Test</b></td>
-      <td><b>5000/-</b></td>
+      <td><b>1000/-</b></td>
     </tr>
     <tr>
       <td><b>2</b></td>
       <td><b>Test</b></td>
-      <td><b>10000/-</b></td>
+      <td><b>1000/-</b></td>
     </tr>
     <tr>
       <td><b>3</b></td>
       <td><b>Test</b></td>
-      <td><b>15000/-</b></td>
+      <td><b>1000/-</b></td>
     </tr>
   </tbody>
 </Table>
