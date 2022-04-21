@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 import { useMediaQuery } from '@mui/material';
 import { Masonry } from '@mui/lab';
 import HomeCard from '@components/home/card';
-
+import Footer from '@components/Footer';
 export default function ProfilePage() {
 const [profile, setProfile] = useState({});
 const [tabStatus, setTabStatus] = useState(0);
@@ -83,6 +83,7 @@ return (
     
         <HomeCard post={post} loading = {loading} authorIsUser = {1}/>
 
+
     ))}
         
        
@@ -91,10 +92,10 @@ return (
              </Grid>
           </Grid>
         </Box>
-    </Container>
-       
 
-    
+    </Container>
+
+    <Footer/>
   </div>
 )
 }

@@ -6,6 +6,7 @@ import listingsData from '../../components/housing/Data/ListingsData'
 //import './styles/main.css'; 
 import Navbar from '../../components/housing/Navbar'
 import ProtectedRoute from '@components/ProtectedRoute/ProtectedRoute';
+import Footer from '@components/Footer'
 
 
 
@@ -175,6 +176,8 @@ class App extends Component {
           <Filter change={this.change} populateAction={this.populateForms} globalState={this.state}/>
           <Listings listingsData={this.state.filterData} change={this.change} globalState={this.state} changeView={this.changeView}/>
         </section>
+
+      <Footer/>
       </div>)
   }
 }

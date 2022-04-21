@@ -10,7 +10,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { useRouter } from 'next/router';
 import ProtectedRoute from '@components/ProtectedRoute/ProtectedRoute';
 import Navbar from '../components/home/Navbar'
-
+import Footer from "@components/Footer";
 function BlogTitle(props){
   return(
     <input
@@ -170,6 +170,7 @@ export default function addBlog() {
           <Editor placeholder="Add blog content!" editorRef={editorRef} />
         </div>
       </div>
+
       <svg
         width="40vh"
         height="40vh"
@@ -189,7 +190,9 @@ export default function addBlog() {
           fill="#51CA26"
         />
       </svg>
+
       </ProtectedRoute>
+      
     </>
   );
 }

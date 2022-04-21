@@ -18,7 +18,8 @@ import {useContext} from 'react';
 import UserContext from '@context/user/UserContext';
 import {setUserProfile} from '@firebaseUtils/userControl';
 import ProtectedRoute from '@components/ProtectedRoute/ProtectedRoute';
-
+import Footer from '@components/Footer';
+import Navbar from '@components/home/Navbar.js'
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -75,11 +76,11 @@ useEffect(async ()=>{
   return (
     <ProtectedRoute>
       <ThemeProvider theme={theme}>
+        <Navbar/>
         <Container component="main" sx={{marginTop:'1rem', paddingTop:'0'}} maxWidth="xs">
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 8,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -153,8 +154,10 @@ useEffect(async ()=>{
               </LoadingButton>
             </Box>
           </Box>
-          <Copyright sx={{ mt: 2 }} />
+
         </Container>
+
+        <Footer/>
       </ThemeProvider>
     </ProtectedRoute>
   );
