@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material';
 
 
 
-const profileTabs  = ['Posts','Bookings', 'Followers', 'Following'];
+const profileTabs  = ['Post','Booking', 'Followers', 'Following'];
 
 function a11yProps(index) {
   return {
