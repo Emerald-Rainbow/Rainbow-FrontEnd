@@ -177,7 +177,6 @@ class App extends Component {
           <Listings listingsData={this.state.filterData} change={this.change} globalState={this.state} changeView={this.changeView}/>
         </section>
 
-      <Footer/>
       </div>)
   }
 }

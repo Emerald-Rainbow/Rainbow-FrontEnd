@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 import axios from 'axios';
 import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol , MDBContainer} from 'mdb-react-ui-kit';
 import Container from '@mui/material/Container';
-import Footer from '@components/Footer';
+import Navbar from '@components/home/Navbar'
 export default function Post() {
 const [post, setPost] = useState('');
 const router = useRouter();
@@ -24,13 +24,13 @@ useEffect(()=>{
 },[id]); 
 
 return (
+   
   <div className='postspage'>
-    
+   <Navbar/>
     <Container maxWidth="lg" fixed>
     <h1>{post.title}</h1>
     <div dangerouslySetInnerHTML={{__html:post.content}} />
     </Container>
-    <Footer/>
   </div>
 )
 }

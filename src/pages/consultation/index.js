@@ -261,7 +261,6 @@ const [show, setShow] =useState(false);
 
       </main>
     </ThemeProvider>
-    
-      <Footer/></ProtectedRoute>
+    </ProtectedRoute>
   );
 }

@@ -95,7 +95,6 @@ return (
 
     </Container>
 
-    <Footer/>
   </div>
 )
 }
