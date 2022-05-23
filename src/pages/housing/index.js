@@ -6,7 +6,6 @@ import listingsData from '../../components/housing/Data/ListingsData'
 //import './styles/main.css'; 
 import Navbar from '../../components/housing/Navbar'
 import ProtectedRoute from '@components/ProtectedRoute/ProtectedRoute';
-import Footer from '@components/Footer'
 
 
 

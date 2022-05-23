@@ -21,7 +21,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import ProtectedRoute from '@components/ProtectedRoute/ProtectedRoute';
 import { TextField } from '@mui/material';
-import Footer from '@components/Footer'
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">

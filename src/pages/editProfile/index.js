@@ -18,7 +18,6 @@ import {useContext} from 'react';
 import UserContext from '@context/user/UserContext';
 import {setUserProfile} from '@firebaseUtils/userControl';
 import ProtectedRoute from '@components/ProtectedRoute/ProtectedRoute';
-import Footer from '@components/Footer';
 import Navbar from '@components/home/Navbar.js'
 function Copyright(props) {
   return (
