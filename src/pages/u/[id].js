@@ -13,7 +13,6 @@ import Box from '@mui/material/Box';
 import { useMediaQuery } from '@mui/material';
 import { Masonry } from '@mui/lab';
 import HomeCard from '@components/home/card';
-import Footer from '@components/Footer';
 export default function ProfilePage() {
 const [profile, setProfile] = useState({});
 const [tabStatus, setTabStatus] = useState(0);
