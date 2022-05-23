@@ -157,7 +157,6 @@ useEffect(async ()=>{
 
         </Container>
 
-        <Footer/>
       </ThemeProvider>
     </ProtectedRoute>
   );

@@ -14,7 +14,6 @@ import Container from '@mui/material/Container';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import HomeCard from '../components/home/card';
 import Select from '@components/home/select';
-import Footer from "@components/Footer";
 
 export default function feed(){
   const router = useRouter();
@@ -99,7 +98,6 @@ return(
         </Masonry>
         </MDBContainer>
     </section>
-    <Footer/>
     </div>
 )
 
