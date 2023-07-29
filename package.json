@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "node createConfigFiles && next build",
+    "start": "next start",
     "export": "next export"
   },
   "dependencies": {
